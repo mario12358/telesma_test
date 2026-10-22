@@ -27,9 +27,12 @@ def create_note(session: Session, book_id: int, raw_content: str) -> Note:
     return note
 
 
-def delete_note(session: Session, note_id: int) -> None:
+def delete_note(session: Session, note_id: int) -> int:
+    """Returns the id of the book the note belonged to."""
     note = session.get(Note, note_id)
     if note is None:
         raise NotFoundError(NOTE_NOT_FOUND)
+    book_id = note.book_id
     session.delete(note)
     session.commit()
+    return book_id
