@@ -86,7 +86,7 @@
   - Specky: (req: 01M5JNJD466AEHW02P8DB44SDT v1 @b10e73e)
   - Specky criteria: (crit: 01M5JNJBYS280EEM43ZME7Y9AB) (crit: 01M5JNJBYSBQ2M7QNWZKYM3R0Y) (crit: 01M5JNJBYSEH0759CW3W8F234H) (crit: 01M5JNJD8ZYH50QK3K5CSQ4AWG) (crit: 01M5JNJD8ZVZA1G2XQEB30V6BA) (crit: 01M5JNJD4JQNSEDMCKPZQD7DWS)
 - [x] Test: 2.2 — integracyjne: dodanie, usunięcie, 404, walidacja długości, kolejność, brak PATCH/PUT (405)
-- [ ] Task 2.3: Powłoka UI — `base.html` (nagłówek: miejsce na statystyki, link „Eksport CSV”), `style.css` (tabela ≥ 640 px, karty < 640 px), filtry Jinja2 (daty, etykiety PL statusu, gwiazdki), helper `is_htmx(request)` i render pełny/fragment (requires: 1.1) (spec: lista-lektur.md, TECHNICAL_GUIDELINES.md) (tech: htmx, fastapi, accessibility)
+- [x] Task 2.3: Powłoka UI — `base.html` (nagłówek: miejsce na statystyki, link „Eksport CSV”), `style.css` (tabela ≥ 640 px, karty < 640 px), filtry Jinja2 (daty, etykiety PL statusu, gwiazdki), helper `is_htmx(request)` i render pełny/fragment (requires: 1.1) (spec: lista-lektur.md, TECHNICAL_GUIDELINES.md) (tech: htmx, fastapi, accessibility)
   - AC: entry — każdy widok HTML dziedziczy z `base.html`; `GET /` renderuje powłokę
   - AC: układ jednokolumnowy poniżej 640 px bez poziomego przewijania (lista-lektur.md:113)
   - AC: formularze z `<label for>`, obsługa klawiaturą Tab/Enter (TG:25)
@@ -94,7 +94,7 @@
   - Specky: (req: 01M5JNJCBV01239FVTB3Q35CRD v1 @cef8c9e)
   - Specky: (req: 01M5JNJCXSEXSVD5D2NSP50PR6 v1 @8d7b3a8)
   - Specky criteria: (crit: 01M5JNJCCBXZHZ1HN80R201YG9) (crit: 01M5JNJCCBDSJ3G1P8HK42H9Z4) (crit: 01M5JNJCY4CP4ZYBZ9HR3X8S00)
-- [ ] Test: 2.3 — render `base.html`, filtry dat/etykiet/gwiazdek, `is_htmx` rozpoznaje nagłówek `HX-Request`
+- [x] Test: 2.3 — render `base.html`, filtry dat/etykiet/gwiazdek, `is_htmx` rozpoznaje nagłówek `HX-Request`
 - [ ] Task 2.4: Ekran „Lista” (`GET /`) — tabela/karty książek, formularz „Dodaj książkę” (tytuł, autor, rok) z HTMX i fallbackiem POST+PRG, zmiana statusu w wierszu jednym kliknięciem (requires: 1.5, 2.3) (spec: lista-lektur.md) (tech: htmx, fastapi, accessibility)
   - AC: wiersz: tytuł (link do `/books/{id}`), autor, rok, status, ocena w gwiazdkach, półki jako etykiety (lista-lektur.md:93)
   - AC: entry — `GET /` (strona główna); `POST /books` i `POST /books/{id}/status` z formularzy

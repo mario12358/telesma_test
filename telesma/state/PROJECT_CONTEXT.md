@@ -64,6 +64,10 @@ Widoki HTML formularzy (bez JS) używają POST + 303 (PRG) na ścieżkach poza `
 | 2026-10-22 | Duplikat książki → 422 przy `title` z `DUPLICATE_MESSAGE`; walidacja zbiera wszystkie błędy naraz | A5, A18 — komunikaty przy wszystkich polach formularza |
 | 2026-10-22 | `GET /api/books` zwraca tablicę (bez koperty `items`), `POST` → 201 + `Location`, ciała zapisu z `extra="forbid"` | Kontrakt ze spec (sekcja 4); wytyczne rest-api.md tam, gdzie nie kolidują |
 | 2026-10-22 | `PUT /api/books/{id}/shelves` podbija `updated_at` książki; nieznane id półki → 422 przy `shelf_ids`, nic nie zmienia | A9; zmiana półek to zmiana książki (sort listy) |
+| 2026-10-22 | 📌 Zapisy (POST/PUT/PATCH/DELETE) z innej witryny → 403 (`Origin` ≠ własny, `Sec-Fetch-Site` ≠ same-origin/none) — `app/security.py` | Wytyczne htmx.md (CSRF); aplikacja bez logowania i ciasteczek nasłuchuje na localhost |
+| 2026-10-22 | 📌 HTMX: `htmx-config.responseHandling` podmienia odpowiedzi 422 (fragment formularza z błędami przy polu) | Wytyczne htmx.md; domyślnie htmx 2 nie podmienia 4xx |
+| 2026-10-22 | Ścieżki spoza `/api` dostają stronę HTML 404 (także dla błędnego id), `/api` — JSON | `app/error_pages.py` |
+| 2026-10-22 | Testy widoków parsują HTML helperem `tests/html.py` (stdlib), zapytania po id/atrybutach/tekście | Wytyczne htmx.md: asercje na HTML, nie porównanie stringów |
 | 2026-10-22 | Akcje GitHub przypięte do SHA (checkout v4.2.2, setup-python v5.6.0, upload-artifact v4.6.2) | Wytyczne github-actions.md |
 
 ## Known problems and solutions
@@ -95,7 +99,7 @@ zależności `get_session` (1.2). Statystyki w nagłówku layoutu liczy serwis s
 <!-- rotates here. Appending more "turn of 08-19 closed" paragraphs turns this               -->
 <!-- section into a second, unbounded report in the prompt of every session.                 -->
 
-- Last completed task: 2.2 NoteService + endpointy
-- Next task: 2.3 Powłoka UI
+- Last completed task: 2.3 Powłoka UI
+- Next task: 2.4 Ekran «Lista»
 - Tag `telesma/phase-1` założony po poprawce audytu zależności (PR #6)
 - Blockers: brak
