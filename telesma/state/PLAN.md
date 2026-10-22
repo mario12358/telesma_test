@@ -178,7 +178,7 @@
 
 ### Phase 4: Wydanie v0.1.0
 
-- [ ] Task 4.1: Wydanie `v0.1.0` — `README.md` (instalacja, uruchomienie, `LEKTURY_DB_PATH`, testy, e2e lokalnie z WebKit), `CHANGELOG.md`, pełna suita + ruff + e2e zielone na main, tag `v0.1.0`, migawka Specky (`create_snapshot` z tagiem, SHA i scenariuszami testów manualnych) (requires: 3.4) (spec: lista-lektur.md, TECHNICAL_GUIDELINES.md) (tech: python, github-actions)
+- [x] Task 4.1: Wydanie `v0.1.0` — `README.md` (instalacja, uruchomienie, `LEKTURY_DB_PATH`, testy, e2e lokalnie z WebKit), `CHANGELOG.md`, pełna suita + ruff + e2e zielone na main, tag `v0.1.0`, migawka Specky (`create_snapshot` z tagiem, SHA i scenariuszami testów manualnych) (requires: 3.4) (spec: lista-lektur.md, TECHNICAL_GUIDELINES.md) (tech: python, github-actions)
   - AC: README opisuje jedną komendę startu po `pip install -r requirements.txt` (TG:29)
   - AC: tag `v0.1.0` na zielonym main (lista-lektur.md:135)
 
