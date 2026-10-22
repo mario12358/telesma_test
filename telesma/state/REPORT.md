@@ -15,7 +15,7 @@
 
 - **Start**: 2026-10-22
 - **Status**: In progress
-- **Progress**: 5/18 tasks completed (Phase 1 ✅)
+- **Progress**: 13/18 tasks completed (Phase 1 ✅, Phase 2 ✅)
 
 ## Test status
 
@@ -35,10 +35,13 @@ forever and grows in the prompt of every session.
 **Regression after Phase 1 (2026-10-22) — GREEN:** `pytest -q` 85/0, `ruff check .` clean.
 First full-suite run of the project; CI job `test` green on every PR (#1–#4).
 
+**Regression after Phase 2 (2026-10-22) — GREEN:** `pytest -q` 197/0, e2e `pytest -m e2e --browser-channel chrome` 6/0, `ruff check .` clean.
+Compared with 85 after Phase 1: +112 tests (shelves/notes API, UI shell, both screens, e2e).
+
 | Metric | Value |
 |--------|-------|
-| Total tests | 85 |
-| Pass | 85 |
+| Total tests | 203 |
+| Pass | 203 |
 | Fail | 0 |
 | Skip | 0 |
 | Last run | 2026-10-22 |
@@ -52,6 +55,14 @@ First full-suite run of the project; CI job `test` green on every PR (#1–#4).
 | 1.3 Schemat i modele ORM | ✅ | 28/28 | 1 | PR #3 | 2026-10-22 |
 | 1.4 Schematy + BookService | ✅ | 67/67 | 1 | a12febf (PR #4) | 2026-10-22 |
 | 1.5 Router `/api/books` | ✅ | 85/85 | 1 | PR #5 | 2026-10-22 |
+| 2.1 Półki — serwis i API | ✅ | 100/100 | 1 | PR #6 | 2026-10-22 |
+| 2.2 Notatki — serwis i API | ✅ | 112/112 | 1 | PR #7 | 2026-10-22 |
+| 2.3 Powłoka UI | ✅ | 130/130 | 1 | PR #8 | 2026-10-22 |
+| 2.4 Ekran «Lista» | ✅ | 148/148 | 1 | PR #9 | 2026-10-22 |
+| 2.5 Sekcja «Półki» | ✅ | 162/162 | 1 | PR #10 | 2026-10-22 |
+| 2.6 Ekran «Szczegóły» | ✅ | 183/183 | 1 | PR #11 | 2026-10-22 |
+| 2.7 Półki i notatki w szczegółach | ✅ | 197/197 | 1 | PR #12 | 2026-10-22 |
+| 2.8 E2E fazy 2 | ✅ | 197 + 6 e2e | 2 | PR #13 | 2026-10-22 |
 
 ## Change history
 
@@ -102,3 +113,7 @@ below the table with the prefix `> ⚠ Info:` so the user can see what happened 
 - [2026-10-22] Task 1.1: krok `playwright install --with-deps chromium` w CI trwał ~10 min — zastąpiony preinstalowanym Chrome runnera (`--browser-channel chrome`), CI ~20 s.
 - [2026-10-22] Task 1.2: mutacja reguły (`foreign_keys=OFF`) zablokowana przez klasyfikator auto mode — test sprawdza wartość 1, a domyślna w SQLite to 0, więc nie przejdzie bez pragmy; mutacji nie wykonano.
 - [2026-10-22] Task 1.4: rebase gałęzi po squash-merge poprzedniego PR zmienił SHA i status `Telesma: checks (local)` zgłosił brak dowodu — `git commit --amend --no-edit` + `--force-with-lease`; kolejne gałęzie zakładane od `origin/main` po scaleniu poprzedniego PR.
+- [2026-10-22] Tag `telesma/phase-1`: audyt OSV zablokował `certifi 2026.7.22` (GHSA-6q48-6c7w-9gw2, krytyczna) — podbito do 2026.10.19 oraz `opentelemetry-api` do 1.45.1 (PR #6); tag założony po scaleniu.
+- [2026-10-22] Tag `telesma/phase-1`: dead-entry ostrzegał o `status_label` bez wywołań — podłączony jako filtr Jinja w 2.3.
+- [2026-10-22] Task 2.6: SAST ostrzegał o atrybutach wstawianych jako gotowy ciąg (`{{ hx_attrs }}`) — przepisane na jawne atrybuty w cudzysłowach (PR #11).
+- [2026-10-22] Task 2.8: drugi zapis w e2e wypełniał formularz przed podmianą HTMX po pierwszym — test czeka na wiersz (`expect(...).to_be_visible()`) przed kolejną akcją.
