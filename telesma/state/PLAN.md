@@ -95,7 +95,7 @@
   - Specky: (req: 01M5JNJCXSEXSVD5D2NSP50PR6 v1 @8d7b3a8)
   - Specky criteria: (crit: 01M5JNJCCBXZHZ1HN80R201YG9) (crit: 01M5JNJCCBDSJ3G1P8HK42H9Z4) (crit: 01M5JNJCY4CP4ZYBZ9HR3X8S00)
 - [x] Test: 2.3 — render `base.html`, filtry dat/etykiet/gwiazdek, `is_htmx` rozpoznaje nagłówek `HX-Request`
-- [ ] Task 2.4: Ekran „Lista” (`GET /`) — tabela/karty książek, formularz „Dodaj książkę” (tytuł, autor, rok) z HTMX i fallbackiem POST+PRG, zmiana statusu w wierszu jednym kliknięciem (requires: 1.5, 2.3) (spec: lista-lektur.md) (tech: htmx, fastapi, accessibility)
+- [x] Task 2.4: Ekran „Lista” (`GET /`) — tabela/karty książek, formularz „Dodaj książkę” (tytuł, autor, rok) z HTMX i fallbackiem POST+PRG, zmiana statusu w wierszu jednym kliknięciem (requires: 1.5, 2.3) (spec: lista-lektur.md) (tech: htmx, fastapi, accessibility)
   - AC: wiersz: tytuł (link do `/books/{id}`), autor, rok, status, ocena w gwiazdkach, półki jako etykiety (lista-lektur.md:93)
   - AC: entry — `GET /` (strona główna); `POST /books` i `POST /books/{id}/status` z formularzy
   - AC: po dodaniu formularz się czyści, nowa pozycja na górze bez przeładowania (lista-lektur.md:94-95)
@@ -106,7 +106,7 @@
   - Specky: (req: 01M5JNJCBV01239FVTB3Q35CRD v1 @cef8c9e)
   - Specky: (req: 01M5JNJCXSEXSVD5D2NSP50PR6 v1 @8d7b3a8)
   - Specky criteria: (crit: 01M5JNJCF5FQS8KHMDEWH4EEBZ) (crit: 01M5JNJCF5K1H3JEVZQVR12B33) (crit: 01M5JNJCF5WHBZ6SQWG62J3WXG) (crit: 01M5JNJCCBFG5JC7MES61ZZ3T7) (crit: 01M5JNJCCBV4KQ4DMWTE3A5SH6) (crit: 01M5JNJCY48R0NGCK2T4RHWD50)
-- [ ] Test: 2.4 — TestClient: render listy z fixture, `HX-Request` zwraca fragment, bez nagłówka redirect 303, błędy przy polu w HTML, zmiana statusu
+- [x] Test: 2.4 — TestClient: render listy z fixture, `HX-Request` zwraca fragment, bez nagłówka redirect 303, błędy przy polu w HTML, zmiana statusu
 - [ ] Task 2.5: Ekran „Lista” — rozwijana sekcja „Półki”: formularz dodania (nazwa, błąd przy polu), lista półek z licznikiem i przyciskiem usunięcia (`hx-confirm`; bez JS strona potwierdzenia); po zmianie odświeżona lista rozwijana półek (requires: 2.1, 2.4) (spec: lista-lektur.md) (tech: htmx, fastapi, accessibility)
   - AC: entry — przycisk „Półki” na ekranie Lista; `POST /shelves`, `POST /shelves/{id}/delete`
   - AC: dodanie półki pokazuje ją w sekcji i w filtrze bez przeładowania (Q2)

@@ -68,6 +68,8 @@ Widoki HTML formularzy (bez JS) używają POST + 303 (PRG) na ścieżkach poza `
 | 2026-10-22 | 📌 HTMX: `htmx-config.responseHandling` podmienia odpowiedzi 422 (fragment formularza z błędami przy polu) | Wytyczne htmx.md; domyślnie htmx 2 nie podmienia 4xx |
 | 2026-10-22 | Ścieżki spoza `/api` dostają stronę HTML 404 (także dla błędnego id), `/api` — JSON | `app/error_pages.py` |
 | 2026-10-22 | Testy widoków parsują HTML helperem `tests/html.py` (stdlib), zapytania po id/atrybutach/tekście | Wytyczne htmx.md: asercje na HTML, nie porównanie stringów |
+| 2026-10-22 | 📌 Wzorzec widoku HTML: ta sama trasa POST obsługuje HTMX (fragment, 422 przy błędzie) i brak JS (303 → strona, 422 → pełna strona z błędami) | A14, wytyczne htmx.md |
+| 2026-10-22 | Lista odświeżana przez OOB `#book-list` (div z tabelą), wiersz statusu przez `hx-target="closest tr"` | OOB z samym `<tr>` w htmx jest kruchy; div jest pewny |
 | 2026-10-22 | Akcje GitHub przypięte do SHA (checkout v4.2.2, setup-python v5.6.0, upload-artifact v4.6.2) | Wytyczne github-actions.md |
 
 ## Known problems and solutions
@@ -99,7 +101,7 @@ zależności `get_session` (1.2). Statystyki w nagłówku layoutu liczy serwis s
 <!-- rotates here. Appending more "turn of 08-19 closed" paragraphs turns this               -->
 <!-- section into a second, unbounded report in the prompt of every session.                 -->
 
-- Last completed task: 2.3 Powłoka UI
-- Next task: 2.4 Ekran «Lista»
+- Last completed task: 2.4 Ekran «Lista»
+- Next task: 2.5 Sekcja «Półki» na liście
 - Tag `telesma/phase-1` założony po poprawce audytu zależności (PR #6)
 - Blockers: brak

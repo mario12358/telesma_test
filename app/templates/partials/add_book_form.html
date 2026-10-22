@@ -1,0 +1,20 @@
+{% set id_prefix = "new-" %}
+<form id="add-book-form" class="add-book" method="post" action="/books"
+      hx-post="/books" hx-target="this" hx-swap="outerHTML" hx-include="#filters">
+  <h2 id="add-book-heading">Dodaj książkę</h2>
+  <div class="form-row">
+    {% for field, label, kind in [("title", "Tytuł", "text"), ("author", "Autor", "text"), ("year", "Rok", "number")] %}
+    <div class="field">
+      <label for="new-{{ field }}">{{ label }}</label>
+      <input type="{{ kind }}" id="new-{{ field }}" name="{{ field }}" value="{{ form.get(field, '') }}"
+             {% if kind == "number" %}inputmode="numeric"{% else %}required{% endif %}
+             {% if field == "title" and focus_title %}autofocus{% endif %}
+             {% if errors and errors.get(field) %}aria-invalid="true" aria-describedby="new-{{ field }}-error"{% endif %}>
+      {% include "partials/field_error.html" %}
+    </div>
+    {% endfor %}
+    <div class="field">
+      <button type="submit">Dodaj</button>
+    </div>
+  </div>
+</form>
