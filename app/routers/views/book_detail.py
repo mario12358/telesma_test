@@ -7,7 +7,13 @@ from app.db import SessionDep
 from app.errors import DomainValidationError, FieldError
 from app.forms import errors_by_field, optional_int
 from app.models import Book
-from app.routers.views.common import FormText, StatusFormText, redirect
+from app.routers.views.common import (
+    FormText,
+    StatusFormText,
+    book_values,
+    detail_page_context,
+    redirect,
+)
 from app.services import books as book_service
 from app.statuses import BookStatus
 from app.templating import is_htmx, render
@@ -16,16 +22,6 @@ router = APIRouter(tags=["views"])
 
 EditableField = Literal["title", "author", "year", "status", "rating"]
 STATUS_MESSAGE = "Niedozwolona wartość."
-
-
-def _values(book: Book) -> dict[str, Any]:
-    return {
-        "title": book.title,
-        "author": book.author,
-        "year": book.year,
-        "status": book.status,
-        "rating": book.rating,
-    }
 
 
 def _submitted_values(raw: dict[str, str]) -> dict[str, Any]:
@@ -50,12 +46,13 @@ def _parse_field(field: str, raw: str) -> Any:
 
 
 def _detail_context(book: Book, **extra: Any) -> dict[str, Any]:
-    return {"book": book, "values": _values(book), "errors": {}, **extra}
+    return {"book": book, "values": book_values(book), "errors": {}, **extra}
 
 
 @router.get("/books/{book_id}", response_class=HTMLResponse, summary="Ekran «Szczegóły»")
 def detail_page(request: Request, book_id: int, session: SessionDep) -> HTMLResponse:
-    return render(request, "detail.html", _detail_context(book_service.get_book(session, book_id)))
+    book = book_service.get_book(session, book_id)
+    return render(request, "detail.html", detail_page_context(session, book))
 
 
 @router.post("/books/{book_id}/fields/{field}", summary="Zapis jednego pola (edycja w miejscu)")
@@ -76,7 +73,7 @@ def save_field(
         changes = {field: _parse_field(field, raw[field])}
         updated = book_service.update_book(session, book.id, changes)
     except DomainValidationError as error:
-        values = {**_values(book), field: _submitted_values(raw)[field]}
+        values = {**book_values(book), field: _submitted_values(raw)[field]}
         context = _detail_context(book, field=field, values=values, errors=errors_by_field(error))
         return render(
             request,
@@ -105,8 +102,9 @@ def save_book(
         changes = {field: _parse_field(field, value) for field, value in raw.items()}
         book_service.update_book(session, book.id, changes)
     except DomainValidationError as error:
-        values = _submitted_values(raw)
-        context = _detail_context(book, values=values, errors=errors_by_field(error))
+        context = detail_page_context(
+            session, book, values=_submitted_values(raw), errors=errors_by_field(error)
+        )
         return render(request, "detail.html", context, status.HTTP_422_UNPROCESSABLE_CONTENT)
     return redirect(f"/books/{book_id}")
 

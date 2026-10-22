@@ -10,7 +10,8 @@
   <noscript><button type="submit">Zapisz</button></noscript>
 </form>
 <p class="hint">Dodano: {{ book.created_at | date_pl }} · Zmieniono: {{ book.updated_at | date_pl }}</p>
-{% block detail_sections %}{% endblock %}
+{% include "partials/book_shelves.html" %}
+{% include "partials/notes_section.html" %}
 <form class="delete-book" method="get" action="/books/{{ book.id }}/delete">
   <button type="submit" class="danger" hx-post="/books/{{ book.id }}/delete"
           hx-confirm="Usunąć książkę «{{ book.title }}»? Jej notatki też zostaną usunięte.">Usuń książkę</button>

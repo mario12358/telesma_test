@@ -1,0 +1,18 @@
+<form id="book-shelves" class="book-shelves" method="post" action="/books/{{ book.id }}/shelves">
+  <fieldset>
+    <legend>Półki tej książki</legend>
+    {% set assigned = book.shelves | map(attribute="id") | list %}
+    {% for shelf in shelves %}
+    <div class="check">
+      <input type="checkbox" id="book-shelf-{{ shelf.id }}" name="shelf_ids" value="{{ shelf.id }}"
+             {% if shelf.id in assigned %}checked{% endif %}
+             hx-post="/books/{{ book.id }}/shelves" hx-trigger="change" hx-target="#book-shelves" hx-swap="outerHTML">
+      <label for="book-shelf-{{ shelf.id }}">{{ shelf.name }}</label>
+    </div>
+    {% else %}
+    <p class="empty">Nie masz jeszcze półek — dodasz je na <a href="/">ekranie listy</a>.</p>
+    {% endfor %}
+    {% if shelves_saved %}<p class="saved" role="status">Zapisano</p>{% endif %}
+  </fieldset>
+  {% if shelves %}<noscript><button type="submit">Zapisz półki</button></noscript>{% endif %}
+</form>

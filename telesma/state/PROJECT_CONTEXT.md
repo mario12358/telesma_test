@@ -105,8 +105,8 @@ zależności `get_session` (1.2). Statystyki w nagłówku layoutu liczy serwis s
 <!-- rotates here. Appending more "turn of 08-19 closed" paragraphs turns this               -->
 <!-- section into a second, unbounded report in the prompt of every session.                 -->
 
-- Last completed task: 2.6 Ekran «Szczegóły»
-- Next task: 2.7 Półki i notatki na ekranie «Szczegóły»
+- Last completed task: 2.7 Półki i notatki na ekranie «Szczegóły»
+- Next task: 2.8 E2E test fazy 2
 - Do zrobienia w 3.1: odpowiedzi sekcji «Półki» mają też odświeżać (OOB) listę rozwijaną półek w pasku filtrów
 - Tag `telesma/phase-1` założony po poprawce audytu zależności (PR #6)
 - Blockers: brak

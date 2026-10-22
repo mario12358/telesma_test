@@ -1,0 +1,31 @@
+{% set note_error = note_errors.get("content") if note_errors else None %}
+<section id="notes-section" class="notes" aria-labelledby="notes-heading">
+  <h2 id="notes-heading">Notatki</h2>
+  <form id="add-note-form" method="post" action="/books/{{ book.id }}/notes"
+        hx-post="/books/{{ book.id }}/notes" hx-target="#notes-section" hx-swap="outerHTML">
+    <div class="field">
+      <label for="note-content">Nowa notatka</label>
+      <textarea id="note-content" name="content" rows="3" maxlength="2000" required
+                {% if focus_note %}autofocus{% endif %}
+                aria-invalid="{{ 'true' if note_error else 'false' }}"{% if note_error %} aria-describedby="note-content-error"{% endif %}>{{ note_form.get("content", "") }}</textarea>
+      {% if note_error %}<p class="field-error" id="note-content-error">{{ note_error }}</p>{% endif %}
+    </div>
+    <button type="submit">Dodaj notatkę</button>
+  </form>
+  {% if book.notes %}
+  <ul class="note-list">
+    {% for note in book.notes %}
+    <li id="note-{{ note.id }}">
+      <p class="note-content">{{ note.content }}</p>
+      <p class="hint"><time datetime="{{ note.created_at.isoformat() }}">{{ note.created_at | datetime_pl }}</time></p>
+      <form method="post" action="/notes/{{ note.id }}/delete"
+            hx-post="/notes/{{ note.id }}/delete" hx-target="#notes-section" hx-swap="outerHTML">
+        <button type="submit" class="danger" aria-label="Usuń notatkę z {{ note.created_at | datetime_pl }}">Usuń</button>
+      </form>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">Brak notatek.</p>
+  {% endif %}
+</section>
