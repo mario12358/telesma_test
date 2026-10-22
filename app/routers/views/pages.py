@@ -58,4 +58,4 @@ def change_status(
     book = book_service.update_book(session, book_id, {"status": new_status})
     if not is_htmx(request):
         return redirect("/")
-    return render(request, "partials/book_row.html", {"book": book})
+    return render(request, "partials/status_change_response.html", {"book": book})

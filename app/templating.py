@@ -6,12 +6,27 @@ from fastapi import Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
+from app.services.stats import library_stats
 from app.statuses import STATUS_LABELS, BookStatus, status_label
 
 TEMPLATES_DIR = Path(__file__).parent / "templates"
 MAX_RATING = 5
 
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+
+def stats_context(request: Request) -> dict[str, Any]:
+    """Header statistics for every rendered page and fragment, read after the request's changes."""
+    session_factory = getattr(request.app.state, "session_factory", None)
+    if session_factory is None:
+        return {}
+    with session_factory() as session:
+        return {"stats": library_stats(session)}
+
+
+templates = Jinja2Templates(directory=TEMPLATES_DIR, context_processors=[stats_context])
+
+
+def decimal_pl(value: float) -> str:
+    return f"{value:.1f}".replace(".", ",")
 
 
 def format_date(value: datetime) -> str:
@@ -40,6 +55,7 @@ def books_count(count: int) -> str:
 
 templates.env.filters.update(
     books_count=books_count,
+    decimal_pl=decimal_pl,
     date_pl=format_date,
     datetime_pl=format_datetime,
     status_label=status_label,

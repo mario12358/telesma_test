@@ -1,0 +1,8 @@
+{% if stats %}
+<dl id="stats" class="stats" aria-label="Statystyki"{% if oob %} hx-swap-oob="true"{% endif %}>
+  <div><dt>Do przeczytania</dt><dd data-stat="to_read">{{ stats.to_read }}</dd></div>
+  <div><dt>Czytam</dt><dd data-stat="reading">{{ stats.reading }}</dd></div>
+  <div><dt>Przeczytane</dt><dd data-stat="read">{{ stats.read }}</dd></div>
+  <div><dt>Średnia ocena</dt><dd data-stat="average_rating">{{ stats.average_rating | decimal_pl if stats.average_rating is not none else "—" }}</dd></div>
+</dl>
+{% endif %}
