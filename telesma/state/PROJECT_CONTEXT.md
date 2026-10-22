@@ -95,7 +95,7 @@ zależności `get_session` (1.2). Statystyki w nagłówku layoutu liczy serwis s
 <!-- rotates here. Appending more "turn of 08-19 closed" paragraphs turns this               -->
 <!-- section into a second, unbounded report in the prompt of every session.                 -->
 
-- Last completed task: 2.1 ShelfService + router
-- Next task: 2.2 NoteService + endpointy
-- Blocker usunięty: tag `telesma/phase-1` zablokowany przez audyt (certifi) — poprawka w PR zadania 2.1, tag po scaleniu
+- Last completed task: 2.2 NoteService + endpointy
+- Next task: 2.3 Powłoka UI
+- Tag `telesma/phase-1` założony po poprawce audytu zależności (PR #6)
 - Blockers: brak

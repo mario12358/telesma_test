@@ -62,6 +62,12 @@ class ShelfSummary(BaseModel):
     name: str
 
 
+class NoteCreate(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    content: str
+
+
 class NoteRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 

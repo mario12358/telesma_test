@@ -77,7 +77,7 @@
   - Specky: (req: 01M5JNJD6Q8C65Y542JWPHAHGM v1 @d2ee33b)
   - Specky criteria: (crit: 01M5JNJBSM2GAM0PE09MT2TFYC) (crit: 01M5JNJBSN9J04WGFZXK49R5HX) (crit: 01M5JNJBSNE7VH0561MPY70YTA) (crit: 01M5JNJD70JB2J9YHXSMR9FVXS) (crit: 01M5JNJD70P6Q8WWBAS94B0PQV) (crit: 01M5JNJD70889VR4YEM4WWA3S8)
 - [x] Test: 2.1 — integracyjne: CRUD półek, unikalność, kolejność, licznik, PUT shelves, filtr `shelf` w `GET /api/books`
-- [ ] Task 2.2: `NoteService` + endpointy — `POST /api/books/{id}/notes` (201, treść 1–2000, 404 dla obcej książki), `DELETE /api/notes/{id}` (204/404); notatki w `GET /api/books/{id}` od najnowszej (R7); brak endpointu edycji (R6) (requires: 1.5) (spec: lista-lektur.md) (tech: python, fastapi, rest-api)
+- [x] Task 2.2: `NoteService` + endpointy — `POST /api/books/{id}/notes` (201, treść 1–2000, 404 dla obcej książki), `DELETE /api/notes/{id}` (204/404); notatki w `GET /api/books/{id}` od najnowszej (R7); brak endpointu edycji (R6) (requires: 1.5) (spec: lista-lektur.md) (tech: python, fastapi, rest-api)
   - AC: entry — `POST /api/books/{id}/notes`, `DELETE /api/notes/{id}` (lista-lektur.md:79-80)
   - AC: pusta treść lub 2001 znaków → 422 przy `content` (lista-lektur.md:57)
   - AC: `GET /api/books/{id}` zwraca `notes` malejąco po `created_at` (R7)
@@ -85,7 +85,7 @@
   - Specky: (req: 01M5JNJD8Q05DPW2129ERV76HS v1 @5a0eb6f)
   - Specky: (req: 01M5JNJD466AEHW02P8DB44SDT v1 @b10e73e)
   - Specky criteria: (crit: 01M5JNJBYS280EEM43ZME7Y9AB) (crit: 01M5JNJBYSBQ2M7QNWZKYM3R0Y) (crit: 01M5JNJBYSEH0759CW3W8F234H) (crit: 01M5JNJD8ZYH50QK3K5CSQ4AWG) (crit: 01M5JNJD8ZVZA1G2XQEB30V6BA) (crit: 01M5JNJD4JQNSEDMCKPZQD7DWS)
-- [ ] Test: 2.2 — integracyjne: dodanie, usunięcie, 404, walidacja długości, kolejność, brak PATCH/PUT (405)
+- [x] Test: 2.2 — integracyjne: dodanie, usunięcie, 404, walidacja długości, kolejność, brak PATCH/PUT (405)
 - [ ] Task 2.3: Powłoka UI — `base.html` (nagłówek: miejsce na statystyki, link „Eksport CSV”), `style.css` (tabela ≥ 640 px, karty < 640 px), filtry Jinja2 (daty, etykiety PL statusu, gwiazdki), helper `is_htmx(request)` i render pełny/fragment (requires: 1.1) (spec: lista-lektur.md, TECHNICAL_GUIDELINES.md) (tech: htmx, fastapi, accessibility)
   - AC: entry — każdy widok HTML dziedziczy z `base.html`; `GET /` renderuje powłokę
   - AC: układ jednokolumnowy poniżej 640 px bez poziomego przewijania (lista-lektur.md:113)
