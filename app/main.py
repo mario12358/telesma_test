@@ -9,6 +9,7 @@ from app.config import Settings, load_settings
 from app.db import create_db_engine, create_session_factory, run_migrations
 from app.errors import register_api_error_handlers
 from app.routers.api import books as books_api
+from app.routers.api import shelves as shelves_api
 from app.routers.views import pages
 
 STATIC_DIR = Path(__file__).parent / "static"
@@ -31,6 +32,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     register_api_error_handlers(app)
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
     app.include_router(books_api.router)
+    app.include_router(shelves_api.router)
     app.include_router(pages.router)
     return app
 

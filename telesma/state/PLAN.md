@@ -68,7 +68,7 @@
 
 ### Phase 2: Półki, notatki, interfejs obu ekranów
 
-- [ ] Task 2.1: `ShelfService` + router — `GET /api/shelves` (alfabetycznie `COLLATE NOCASE`, `book_count`), `POST /api/shelves` (nazwa 1–60, duplikat bez wielkości liter → 422 przy `name`), `DELETE /api/shelves/{id}` (odpina książki), `PUT /api/books/{id}/shelves` (`{"shelf_ids": [...]}`, nieznane id → 422) (requires: 1.5) (spec: lista-lektur.md) (tech: python, fastapi, rest-api)
+- [x] Task 2.1: `ShelfService` + router — `GET /api/shelves` (alfabetycznie `COLLATE NOCASE`, `book_count`), `POST /api/shelves` (nazwa 1–60, duplikat bez wielkości liter → 422 przy `name`), `DELETE /api/shelves/{id}` (odpina książki), `PUT /api/books/{id}/shelves` (`{"shelf_ids": [...]}`, nieznane id → 422) (requires: 1.5) (spec: lista-lektur.md) (tech: python, fastapi, rest-api)
   - AC: entry — ścieżki `/api/shelves*` i `PUT /api/books/{id}/shelves` (lista-lektur.md:75-78)
   - AC: półka może być pusta (R4); lista alfabetyczna z licznikiem (R5, lista-lektur.md:48-49)
   - AC: `PUT` z `[1,2]` a potem `[2]` zostawia książkę tylko na półce 2; pusta lista dozwolona
@@ -76,7 +76,7 @@
   - Specky: (req: 01M5JNJBS0EPEP3TSA6H4QD6N6 v1 @ebeb2dd)
   - Specky: (req: 01M5JNJD6Q8C65Y542JWPHAHGM v1 @d2ee33b)
   - Specky criteria: (crit: 01M5JNJBSM2GAM0PE09MT2TFYC) (crit: 01M5JNJBSN9J04WGFZXK49R5HX) (crit: 01M5JNJBSNE7VH0561MPY70YTA) (crit: 01M5JNJD70JB2J9YHXSMR9FVXS) (crit: 01M5JNJD70P6Q8WWBAS94B0PQV) (crit: 01M5JNJD70889VR4YEM4WWA3S8)
-- [ ] Test: 2.1 — integracyjne: CRUD półek, unikalność, kolejność, licznik, PUT shelves, filtr `shelf` w `GET /api/books`
+- [x] Test: 2.1 — integracyjne: CRUD półek, unikalność, kolejność, licznik, PUT shelves, filtr `shelf` w `GET /api/books`
 - [ ] Task 2.2: `NoteService` + endpointy — `POST /api/books/{id}/notes` (201, treść 1–2000, 404 dla obcej książki), `DELETE /api/notes/{id}` (204/404); notatki w `GET /api/books/{id}` od najnowszej (R7); brak endpointu edycji (R6) (requires: 1.5) (spec: lista-lektur.md) (tech: python, fastapi, rest-api)
   - AC: entry — `POST /api/books/{id}/notes`, `DELETE /api/notes/{id}` (lista-lektur.md:79-80)
   - AC: pusta treść lub 2001 znaków → 422 przy `content` (lista-lektur.md:57)
