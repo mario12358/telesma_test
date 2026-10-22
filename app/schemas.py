@@ -35,6 +35,26 @@ class BookUpdate(BaseModel):
     rating: int | None = None
 
 
+class ShelfCreate(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    name: str
+
+
+class ShelfRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    name: str
+    book_count: int
+
+
+class BookShelvesUpdate(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    shelf_ids: list[int]
+
+
 class ShelfSummary(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
