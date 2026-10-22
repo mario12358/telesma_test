@@ -115,7 +115,7 @@
   - Specky: (req: 01M5JNJCGXJWYBMCEHGCEB21Q3 v1 @fc5d04d)
   - Specky criteria: (crit: 01M5JNJCH7S65DEFPAQ8S57P7V) (crit: 01M5JNJCH7TBY47QETRQDX28AY) (crit: 01M5JNJCH7DTP27AA4PS57K9Z6)
 - [x] Test: 2.5 — render sekcji, dodanie/usunięcie przez formularze (HTMX i bez JS), komunikat duplikatu
-- [ ] Task 2.6: Ekran „Szczegóły” (`GET /books/{id}`) — pola tytuł/autor/rok/status/ocena z zapisem per pole (`hx-trigger="change"`), gwiazdki 1–5 aktywne przy `reading`/`read`, bez JS formularz „Zapisz”; „Usuń książkę” z potwierdzeniem → redirect na `/` (requires: 1.5, 2.3) (spec: lista-lektur.md) (tech: htmx, fastapi, accessibility)
+- [x] Task 2.6: Ekran „Szczegóły” (`GET /books/{id}`) — pola tytuł/autor/rok/status/ocena z zapisem per pole (`hx-trigger="change"`), gwiazdki 1–5 aktywne przy `reading`/`read`, bez JS formularz „Zapisz”; „Usuń książkę” z potwierdzeniem → redirect na `/` (requires: 1.5, 2.3) (spec: lista-lektur.md) (tech: htmx, fastapi, accessibility)
   - AC: entry — link tytułu z listy prowadzi do `/books/{id}` (lista-lektur.md:97)
   - AC: zmiana pola zapisuje się bez przeładowania; po odświeżeniu wartość zachowana (Q3)
   - AC: rok 1200 → komunikat przy polu, wartość w bazie bez zmian (lista-lektur.md:29, 114)
@@ -125,7 +125,7 @@
   - Specky: (req: 01M5JNJCN0DVWSCXXHSGHSGG6V v1 @1f96712)
   - Specky: (req: 01M5JNJD1TJ1MABNK0535BD9Z8 v1 @1d012e2)
   - Specky criteria: (crit: 01M5JNJCNC307GVYBRS5WXDG1H) (crit: 01M5JNJCNCN762H1ZTHNKDWEH7) (crit: 01M5JNJCNCT9XX35EHR5NAZRGJ) (crit: 01M5JNJCNCQ5Q9XKZHHJC5V1MK)
-- [ ] Test: 2.6 — render szczegółów, PATCH per pole (fragment), formularz bez JS, gwiazdki wg statusu, usunięcie, 404
+- [x] Test: 2.6 — render szczegółów, PATCH per pole (fragment), formularz bez JS, gwiazdki wg statusu, usunięcie, 404
 - [ ] Task 2.7: Ekran „Szczegóły” — półki jako pola wyboru (zaznacz/odznacz zapisuje od razu przez `PUT shelves`), notatki: pole dodania na górze, lista od najnowszej z datą `dd.MM.yyyy HH:mm`, przycisk usunięcia przy każdej; bez edycji (requires: 2.1, 2.2, 2.6) (spec: lista-lektur.md) (tech: htmx, fastapi, accessibility)
   - AC: entry — sekcje „Półki” i „Notatki” na `/books/{id}`; `POST /books/{id}/shelves`, `POST /books/{id}/notes`, `POST /notes/{id}/delete`
   - AC: zaznaczenie pola wyboru zapisuje od razu; po odświeżeniu pozostaje zaznaczone (lista-lektur.md:105)

@@ -1,0 +1,38 @@
+{% set field_error = errors.get(field) if errors else None %}
+<div class="field" id="field-{{ field }}"{% if oob %} hx-swap-oob="true"{% endif %}>
+  {% if field == "rating" %}
+  {% set rating_enabled = values.status in ("reading", "read") %}
+  <fieldset class="rating"{% if not rating_enabled %} disabled aria-describedby="rating-hint"{% endif %}>
+    <legend>Ocena</legend>
+    {% for score in range(1, MAX_RATING + 1) %}
+    <input type="radio" id="rating-{{ score }}" name="rating" value="{{ score }}"
+           {% if values.rating == score %}checked{% endif %}
+           hx-post="/books/{{ book.id }}/fields/rating" hx-trigger="change" hx-target="#field-rating" hx-swap="outerHTML">
+    <label for="rating-{{ score }}" class="star"><span aria-hidden="true">{{ "★" if values.rating and score <= values.rating else "☆" }}</span><span class="visually-hidden">{{ score }} z {{ MAX_RATING }}</span></label>
+    {% endfor %}
+    <input type="radio" id="rating-none" name="rating" value="" {% if not values.rating %}checked{% endif %}
+           hx-post="/books/{{ book.id }}/fields/rating" hx-trigger="change" hx-target="#field-rating" hx-swap="outerHTML">
+    <label for="rating-none" class="no-rating">brak oceny</label>
+  </fieldset>
+  {% if not rating_enabled %}<p class="hint" id="rating-hint">Ocenę można wystawić, gdy książka ma status «czytam» lub «przeczytana».</p>{% endif %}
+  {% elif field == "status" %}
+  <label for="detail-status">Status</label>
+  <select id="detail-status" name="status"
+          hx-post="/books/{{ book.id }}/fields/status" hx-trigger="change" hx-target="#field-status" hx-swap="outerHTML"
+          aria-invalid="{{ 'true' if field_error else 'false' }}"{% if field_error %} aria-describedby="detail-status-error"{% endif %}>
+    {% for status, label in STATUS_LABELS.items() %}
+    <option value="{{ status.value }}"{% if values.status == status.value %} selected{% endif %}>{{ label }}</option>
+    {% endfor %}
+  </select>
+  {% else %}
+  {% set labels = {"title": "Tytuł", "author": "Autor", "year": "Rok"} %}
+  <label for="detail-{{ field }}">{{ labels[field] }}</label>
+  <input type="{{ 'number' if field == 'year' else 'text' }}" id="detail-{{ field }}" name="{{ field }}"
+         value="{{ values[field] if values[field] is not none else '' }}"
+         {% if field == "year" %}inputmode="numeric"{% else %}required{% endif %}
+         hx-post="/books/{{ book.id }}/fields/{{ field }}" hx-trigger="change" hx-target="#field-{{ field }}" hx-swap="outerHTML"
+         aria-invalid="{{ 'true' if field_error else 'false' }}"{% if field_error %} aria-describedby="detail-{{ field }}-error"{% endif %}>
+  {% endif %}
+  {% if field_error %}<p class="field-error" id="detail-{{ field }}-error">{{ field_error }}</p>{% endif %}
+  {% if saved == field %}<p class="saved" role="status">Zapisano</p>{% endif %}
+</div>

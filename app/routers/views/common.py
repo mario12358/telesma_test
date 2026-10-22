@@ -9,6 +9,7 @@ from app.services import shelves as shelf_service
 from app.services.books import BookFilters
 
 FormText = Annotated[str, Form()]
+StatusFormText = Annotated[str, Form(alias="status")]
 
 
 def list_context(session: Session, **extra: Any) -> dict[str, Any]:
