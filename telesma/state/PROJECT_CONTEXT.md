@@ -4,14 +4,41 @@ This file keeps the project context that survives `/compact`.
 
 ## Tech stack
 
-- Language: [e.g. Python 3.11]
-- Framework: [e.g. FastAPI]
-- Database: [e.g. PostgreSQL]
-- Tests: [e.g. pytest]
+- Language: Python 3.12 (lokalnie `.venv` tworzony przez `uv venv --python 3.12 .venv`)
+- Framework: FastAPI (API JSON pod `/api` + widoki HTML), Jinja2, HTMX 2.0.4 (`app/static/htmx.min.js`)
+- Database: SQLite (`LEKTURY_DB_PATH`, domyślnie `data/lektury.db`), SQLAlchemy 2.x (sync), Alembic
+- Tests: pytest + FastAPI `TestClient`; e2e Playwright (Python, marker `e2e`); ruff (lint + format)
+- CI: `.github/workflows/specky-ci.yml`, job `test` (pytest z JUnit, e2e Chromium, ruff)
 
 ## Architecture
 
-[A short description of the project structure]
+Mapa modułów (directory → responsibility):
+
+| Moduł | Odpowiedzialność |
+|-------|------------------|
+| `app/main.py` | `create_app(settings)` + `lifespan`; rejestracja handlerów błędów, `/static`, routerów |
+| `app/config.py` | Jedyne miejsce czytające `os.environ` (`LEKTURY_DB_PATH`) → `Settings` |
+| `app/errors.py` | `FieldError`, `DomainValidationError`, `NotFoundError` + handlery API (422/404) |
+| `app/statuses.py` | `BookStatus` (`to_read/reading/read`), `STATUS_LABELS` (PL), `RATEABLE_STATUSES` |
+| `app/db.py` | Engine, sesja per request, PRAGMA foreign_keys, migracje przy starcie (1.2) |
+| `app/models.py` | Modele ORM SQLAlchemy 2.0 (`Mapped`, `mapped_column`) (1.3) |
+| `app/schemas.py` | Schematy Pydantic v2 per kierunek: `*Create`, `*Update`, `*Read` (1.4) |
+| `app/services/` | Logika domenowa i reguły R1–R7; przyjmują sesję i proste argumenty, rzucają wyjątki domenowe |
+| `app/routers/api/` | Cienkie routery JSON pod `/api` (parsowanie → serwis → schemat) |
+| `app/routers/views/` | Widoki HTML i fragmenty HTMX; te same serwisy co API |
+| `app/templates/`, `app/static/` | Szablony Jinja2, CSS, HTMX |
+| `alembic/` | Migracje schematu |
+| `tests/` | `test_<moduł>.py`; `tests/e2e/` dla Playwright |
+
+Format błędów API: `422` → `{"detail": [{"field": "<pole>", "message": "<komunikat PL>"}]}`
+(zarówno błędy Pydantic, jak i `DomainValidationError` z serwisów); `404` → `{"detail": "<komunikat>"}`.
+
+Konwencje nazw: kod, identyfikatory, klucze JSON i komentarze po angielsku; teksty UI i komunikaty
+błędów po polsku. Statusy w DB/API to kody `to_read/reading/read`, etykiety PL tylko przez `STATUS_LABELS`.
+Endpointy synchroniczne (`def`) — sync SQLAlchemy działa w threadpoolu FastAPI.
+
+Warstwy: router → serwis → ORM. Routery nie importują się nawzajem i nie zawierają reguł biznesowych.
+Widoki HTML formularzy (bez JS) używają POST + 303 (PRG) na ścieżkach poza `/api`.
 
 ## Key decisions
 
@@ -22,7 +49,13 @@ This file keeps the project context that survives `/compact`.
 
 | Date | Decision | Reason |
 |------|----------|--------|
-| | | |
+| 2026-10-22 | 📌 Ocena 1–5 dozwolona przy `reading` i `read`; zmiana na `to_read` kasuje ocenę | Rozstrzygnięcie S1 (QUESTIONS.md), wymaganie Specky 01M5JNJD1TJ1MABNK0535BD9Z8 |
+| 2026-10-22 | 📌 Status w DB/API jako kody EN, etykiety PL w UI i CSV | Q1, wymaganie Specky 01M5JNJCXSEXSVD5D2NSP50PR6 |
+| 2026-10-22 | 📌 Jeden format błędu 422 dla Pydantic i serwisów, komunikaty PL | A18; komunikaty trafiają też do szablonów przy polu |
+| 2026-10-22 | Migracje Alembic uruchamiane w `lifespan` mimo wytycznej fastapi.md | A2: spec wymaga jednej komendy startu i tworzenia bazy przy starcie |
+| 2026-10-22 | `requirements.txt` / `requirements-dev.txt` w pełni przypięte zamiast pyproject + lock | TECHNICAL_GUIDELINES.md:29 wymaga `pip install -r requirements.txt`; plik pełni rolę lockfile |
+| 2026-10-22 | Brak pydantic-settings; `app/config.py` czyta jedną zmienną | Jedna zmienna konfiguracji, YAGNI |
+| 2026-10-22 | Akcje GitHub przypięte do SHA (checkout v4.2.2, setup-python v5.6.0, upload-artifact v4.6.2) | Wytyczne github-actions.md |
 
 ## Known problems and solutions
 
@@ -36,11 +69,12 @@ This file keeps the project context that survives `/compact`.
 
 | Problem | Solution |
 |---------|----------|
-| | |
+| Systemowy Python 3.13 bez certyfikatów SSL, brak 3.12 | `uv venv --python 3.12 .venv`; instalacja przez `uv pip install` |
 
 ## Component dependencies
 
-[A description of how the components work together]
+Routery API i widoki HTML wołają te same funkcje serwisów; serwisy dostają sesję SQLAlchemy z
+zależności `get_session` (1.2). Statystyki w nagłówku layoutu liczy serwis statystyk (3.3).
 
 ## Current state
 
@@ -49,6 +83,6 @@ This file keeps the project context that survives `/compact`.
 <!-- rotates here. Appending more "turn of 08-19 closed" paragraphs turns this               -->
 <!-- section into a second, unbounded report in the prompt of every session.                 -->
 
-- Last completed task: [number/name]
-- Next task: [number/name]
-- Blockers: [if any]
+- Last completed task: 1.1 Architecture skeleton and conventions
+- Next task: 1.2 Warstwa bazy
+- Blockers: brak
