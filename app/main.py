@@ -7,11 +7,13 @@ from fastapi.staticfiles import StaticFiles
 
 from app.config import Settings, load_settings
 from app.db import create_db_engine, create_session_factory, run_migrations
+from app.error_pages import register_error_pages
 from app.errors import register_api_error_handlers
 from app.routers.api import books as books_api
 from app.routers.api import notes as notes_api
 from app.routers.api import shelves as shelves_api
 from app.routers.views import pages
+from app.security import reject_cross_site_writes
 
 STATIC_DIR = Path(__file__).parent / "static"
 
@@ -31,6 +33,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app = FastAPI(title="Lista lektur", lifespan=lifespan)
     app.state.settings = app_settings
     register_api_error_handlers(app)
+    register_error_pages(app)
+    app.middleware("http")(reject_cross_site_writes)
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
     app.include_router(books_api.router)
     app.include_router(shelves_api.router)

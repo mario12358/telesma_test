@@ -1,12 +1,11 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
+
+from app.templating import render
 
 router = APIRouter(tags=["views"])
 
 
-@router.get("/", response_class=HTMLResponse, summary="Strona główna")
-def home() -> str:
-    return (
-        '<!doctype html><html lang="pl"><head><meta charset="utf-8">'
-        "<title>Lista lektur</title></head><body><h1>Lista lektur</h1></body></html>"
-    )
+@router.get("/", response_class=HTMLResponse, summary="Ekran «Lista»")
+def list_page(request: Request) -> HTMLResponse:
+    return render(request, "list.html")
