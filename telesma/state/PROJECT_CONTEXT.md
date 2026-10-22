@@ -57,6 +57,9 @@ Widoki HTML formularzy (bez JS) używają POST + 303 (PRG) na ścieżkach poza `
 | 2026-10-22 | Migracje Alembic uruchamiane w `lifespan` mimo wytycznej fastapi.md | A2: spec wymaga jednej komendy startu i tworzenia bazy przy starcie |
 | 2026-10-22 | `requirements.txt` / `requirements-dev.txt` w pełni przypięte zamiast pyproject + lock | TECHNICAL_GUIDELINES.md:29 wymaga `pip install -r requirements.txt`; plik pełni rolę lockfile |
 | 2026-10-22 | Brak pydantic-settings; `app/config.py` czyta jedną zmienną | Jedna zmienna konfiguracji, YAGNI |
+| 2026-10-22 | 📌 Tabele `STRICT`; teksty `Text`, daty jako tekst ISO `%Y-%m-%dT%H:%M:%S.%fZ` (typ `UtcDateTime`) | Wytyczne sqlite.md; STRICT nie przyjmuje VARCHAR/DATETIME; stała szerokość = sortowanie tekstowe = chronologiczne |
+| 2026-10-22 | 📌 `normalize_text` (casefold, przycięcie, pojedyncze spacje) dla R1, unikalności półek i szukania `q` | SQLite `LIKE` jest case-insensitive tylko dla ASCII; szukanie po kolumnach `*_norm` |
+| 2026-10-22 | CHECK w bazie: status, zakres oceny, ocena tylko przy `reading`/`read` | Druga linia obrony reguł z serwisu (S1) |
 | 2026-10-22 | Akcje GitHub przypięte do SHA (checkout v4.2.2, setup-python v5.6.0, upload-artifact v4.6.2) | Wytyczne github-actions.md |
 
 ## Known problems and solutions
@@ -88,6 +91,6 @@ zależności `get_session` (1.2). Statystyki w nagłówku layoutu liczy serwis s
 <!-- rotates here. Appending more "turn of 08-19 closed" paragraphs turns this               -->
 <!-- section into a second, unbounded report in the prompt of every session.                 -->
 
-- Last completed task: 1.2 Warstwa bazy
-- Next task: 1.3 Migracja początkowa + modele ORM
+- Last completed task: 1.3 Migracja początkowa + modele ORM
+- Next task: 1.4 Schematy Pydantic + BookService
 - Blockers: brak

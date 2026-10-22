@@ -33,7 +33,7 @@
   - Specky: (req: 01M5JNJBDG93QNHV5379HRXF17 v1 @fc4136e)
   - Specky criteria: (crit: 01M5JNJBEFT8T7ZS911ETD6407) (crit: 01M5JNJBEG77T6N9EA0B04YZCX)
 - [x] Test: 1.2 — start tworzy bazę; FK włączone (`PRAGMA foreign_keys` = 1); fixture izoluje testy
-- [ ] Task 1.3: Migracja początkowa + modele ORM — `books` (w tym title_norm, author_norm z unikalnym indeksem pary), `shelves` (name_norm unikalny), `book_shelves` (PK złożony, FK ON DELETE CASCADE), `notes` (book_id FK CASCADE, content, created_at) (requires: 1.2) (spec: lista-lektur.md) (tech: python, sql, sqlite)
+- [x] Task 1.3: Migracja początkowa + modele ORM — `books` (w tym title_norm, author_norm z unikalnym indeksem pary), `shelves` (name_norm unikalny), `book_shelves` (PK złożony, FK ON DELETE CASCADE), `notes` (book_id FK CASCADE, content, created_at) (requires: 1.2) (spec: lista-lektur.md) (tech: python, sql, sqlite)
   - AC: `books`: id, title, author, year, status, rating, title_norm, author_norm, created_at, updated_at (lista-lektur.md:24-32)
   - AC: duplikat pary (title_norm, author_norm) odrzucany przez bazę (R1, lista-lektur.md:36)
   - AC: usunięcie wiersza `books` kaskadowo usuwa `notes` i `book_shelves` (R3, lista-lektur.md:39)
@@ -43,7 +43,7 @@
   - Specky: (req: 01M5JNJD466AEHW02P8DB44SDT v1 @b10e73e)
   - Specky: (req: 01M5JNJBS0EPEP3TSA6H4QD6N6 v1 @ebeb2dd)
   - Specky: (req: 01M5JNJBY1D70DBG1EJP24G9YQ v1 @e14a41b)
-- [ ] Test: 1.3 — migracja na pustej bazie tworzy 4 tabele; constraints unikalności i kaskady działają
+- [x] Test: 1.3 — migracja na pustej bazie tworzy 4 tabele; constraints unikalności i kaskady działają
 - [ ] Task 1.4: Schematy Pydantic + `BookService` — normalizacja (R1), create, get, list (filtry status/shelf/q, sort `updated_at` desc), update częściowy (R2 wg S1: ocena 1–5 tylko przy `reading`/`read`, zmiana na `to_read` kasuje ocenę), delete (R3); komunikaty PL (requires: 1.3) (spec: lista-lektur.md) (tech: python, fastapi)
   - AC: entry — wywołania z routera `/api/books` (1.5) i z widoków HTML (2.4, 2.6)
   - AC: tytuł 1–200 po przycięciu, autor 1–120, rok opcjonalny 1450 ≤ rok ≤ bieżący+1, status domyślnie `to_read` (lista-lektur.md:27-30)
