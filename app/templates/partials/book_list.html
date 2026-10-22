@@ -1,0 +1,22 @@
+<div id="book-list"{% if oob %} hx-swap-oob="true"{% endif %}>
+  {% if books %}
+  <table class="books">
+    <caption class="visually-hidden">Książki na liście</caption>
+    <thead>
+      <tr>
+        <th scope="col">Tytuł</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Rok</th>
+        <th scope="col">Status</th>
+        <th scope="col">Ocena</th>
+        <th scope="col">Półki</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books %}{% include "partials/book_row.html" %}{% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="empty">Brak książek do wyświetlenia.</p>
+  {% endif %}
+</div>

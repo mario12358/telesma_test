@@ -1,4 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Moje lektury</h1>
+{% include "partials/add_book_form.html" %}
+<section aria-labelledby="books-heading">
+  <h2 id="books-heading">Książki</h2>
+  {% include "partials/book_list.html" %}
+</section>
 {% endblock %}

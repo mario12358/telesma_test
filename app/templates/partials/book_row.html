@@ -1,0 +1,26 @@
+<tr id="book-{{ book.id }}">
+  <td data-label="Tytuł"><a href="/books/{{ book.id }}">{{ book.title }}</a></td>
+  <td data-label="Autor">{{ book.author }}</td>
+  <td data-label="Rok">{{ book.year if book.year is not none else "—" }}</td>
+  <td data-label="Status">
+    <form class="status-form" method="post" action="/books/{{ book.id }}/status"
+          hx-post="/books/{{ book.id }}/status" hx-target="closest tr" hx-swap="outerHTML">
+      <fieldset class="status-buttons">
+        <legend class="visually-hidden">Status książki «{{ book.title }}»</legend>
+        {% for status, label in STATUS_LABELS.items() %}
+        <button type="submit" name="status" value="{{ status.value }}"
+                aria-pressed="{{ 'true' if book.status == status.value else 'false' }}">{{ label }}</button>
+        {% endfor %}
+      </fieldset>
+    </form>
+  </td>
+  <td data-label="Ocena">
+    {% if book.rating %}
+    <span class="visually-hidden">Ocena {{ book.rating }} z {{ MAX_RATING }}</span>
+    <span class="stars" aria-hidden="true">{{ book.rating | stars }}</span>
+    {% else %}—{% endif %}
+  </td>
+  <td data-label="Półki">
+    {% for shelf in book.shelves %}<span class="tag">{{ shelf.name }}</span>{% else %}—{% endfor %}
+  </td>
+</tr>
