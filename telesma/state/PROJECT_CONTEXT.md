@@ -112,7 +112,7 @@ zależności `get_session` (1.2). Statystyki w nagłówku layoutu liczy serwis s
 <!-- rotates here. Appending more "turn of 08-19 closed" paragraphs turns this               -->
 <!-- section into a second, unbounded report in the prompt of every session.                 -->
 
-- Last completed task: 3.3 Statystyki
-- Next task: 3.4 E2E fazy 3
+- Last completed task: 3.4 E2E fazy 3 (Phase 3 ✅)
+- Next task: 4.1 Wydanie v0.1.0
 - Tag `telesma/phase-1` założony po poprawce audytu zależności (PR #6)
 - Blockers: brak
