@@ -6,7 +6,7 @@ Read and updated by Telesma (section 18 of the instructions). Committed.
 - **Cursor (since_seq)**: 0
   <!-- The first session passes since_seq=0 to what_changed explicitly; Telesma moves the cursor -->
   <!-- to next_seq only after the change files are written (18.1).                              -->
-- **Last sync**: 2026-10-22 (clarification: wsad 01M5JN7RQ5DQ3XEW1MB4N1V5V4 zaakceptowany na prośbę użytkownika — 20 wymagań, 61 kryteriów)
+- **Last sync**: 2026-10-23 — wszystkie 20 wymagań `code_ready`, 61/61 kryteriów `tested`/`passing` (dowody z CI JUnit); migawka `01M5JT6BV0JNEECM1MAMGNYT4S` dla tagu `v0.1.0` (4d90a9b) ze scenariuszami testów ręcznych. Decyzja `done` należy do człowieka.
 
 ## Requirements → tasks
 
