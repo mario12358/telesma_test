@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Usuń półkę — Lista lektur{% endblock %}
+{% block content %}
+<h1>Usunąć półkę «{{ shelf.name }}»?</h1>
+<p>Półka zniknie, a książki z niej ({{ shelf.book_count | books_count }}) zostaną na liście.</p>
+<form method="post" action="/shelves/{{ shelf.id }}/delete">
+  <button type="submit" class="danger">Tak, usuń półkę</button>
+  <a href="/">Anuluj</a>
+</form>
+{% endblock %}

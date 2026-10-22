@@ -107,14 +107,14 @@
   - Specky: (req: 01M5JNJCXSEXSVD5D2NSP50PR6 v1 @8d7b3a8)
   - Specky criteria: (crit: 01M5JNJCF5FQS8KHMDEWH4EEBZ) (crit: 01M5JNJCF5K1H3JEVZQVR12B33) (crit: 01M5JNJCF5WHBZ6SQWG62J3WXG) (crit: 01M5JNJCCBFG5JC7MES61ZZ3T7) (crit: 01M5JNJCCBV4KQ4DMWTE3A5SH6) (crit: 01M5JNJCY48R0NGCK2T4RHWD50)
 - [x] Test: 2.4 — TestClient: render listy z fixture, `HX-Request` zwraca fragment, bez nagłówka redirect 303, błędy przy polu w HTML, zmiana statusu
-- [ ] Task 2.5: Ekran „Lista” — rozwijana sekcja „Półki”: formularz dodania (nazwa, błąd przy polu), lista półek z licznikiem i przyciskiem usunięcia (`hx-confirm`; bez JS strona potwierdzenia); po zmianie odświeżona lista rozwijana półek (requires: 2.1, 2.4) (spec: lista-lektur.md) (tech: htmx, fastapi, accessibility)
+- [x] Task 2.5: Ekran „Lista” — rozwijana sekcja „Półki”: formularz dodania (nazwa, błąd przy polu), lista półek z licznikiem i przyciskiem usunięcia (`hx-confirm`; bez JS strona potwierdzenia); po zmianie odświeżona lista rozwijana półek (requires: 2.1, 2.4) (spec: lista-lektur.md) (tech: htmx, fastapi, accessibility)
   - AC: entry — przycisk „Półki” na ekranie Lista; `POST /shelves`, `POST /shelves/{id}/delete`
   - AC: dodanie półki pokazuje ją w sekcji i w filtrze bez przeładowania (Q2)
   - AC: usunięcie wymaga potwierdzenia; książki zostają (A4, lista-lektur.md:123)
   - AC: duplikat nazwy → komunikat przy polu nazwy
   - Specky: (req: 01M5JNJCGXJWYBMCEHGCEB21Q3 v1 @fc5d04d)
   - Specky criteria: (crit: 01M5JNJCH7S65DEFPAQ8S57P7V) (crit: 01M5JNJCH7TBY47QETRQDX28AY) (crit: 01M5JNJCH7DTP27AA4PS57K9Z6)
-- [ ] Test: 2.5 — render sekcji, dodanie/usunięcie przez formularze (HTMX i bez JS), komunikat duplikatu
+- [x] Test: 2.5 — render sekcji, dodanie/usunięcie przez formularze (HTMX i bez JS), komunikat duplikatu
 - [ ] Task 2.6: Ekran „Szczegóły” (`GET /books/{id}`) — pola tytuł/autor/rok/status/ocena z zapisem per pole (`hx-trigger="change"`), gwiazdki 1–5 aktywne przy `reading`/`read`, bez JS formularz „Zapisz”; „Usuń książkę” z potwierdzeniem → redirect na `/` (requires: 1.5, 2.3) (spec: lista-lektur.md) (tech: htmx, fastapi, accessibility)
   - AC: entry — link tytułu z listy prowadzi do `/books/{id}` (lista-lektur.md:97)
   - AC: zmiana pola zapisuje się bez przeładowania; po odświeżeniu wartość zachowana (Q3)

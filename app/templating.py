@@ -29,7 +29,17 @@ def rating_stars(rating: int | None) -> str:
     return "★" * rating + "☆" * (MAX_RATING - rating)
 
 
+def books_count(count: int) -> str:
+    """Polish plural: 1 książka, 2-4 książki (not 12-14), otherwise książek."""
+    if count == 1:
+        return "1 książka"
+    if count % 10 in (2, 3, 4) and count % 100 not in (12, 13, 14):
+        return f"{count} książki"
+    return f"{count} książek"
+
+
 templates.env.filters.update(
+    books_count=books_count,
     date_pl=format_date,
     datetime_pl=format_datetime,
     status_label=status_label,

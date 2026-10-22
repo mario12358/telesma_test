@@ -13,6 +13,7 @@ from app.routers.api import books as books_api
 from app.routers.api import notes as notes_api
 from app.routers.api import shelves as shelves_api
 from app.routers.views import pages
+from app.routers.views import shelves as shelf_views
 from app.security import reject_cross_site_writes
 
 STATIC_DIR = Path(__file__).parent / "static"
@@ -40,6 +41,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(shelves_api.router)
     app.include_router(notes_api.router)
     app.include_router(pages.router)
+    app.include_router(shelf_views.router)
     return app
 
 

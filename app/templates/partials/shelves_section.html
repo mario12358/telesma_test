@@ -1,0 +1,33 @@
+{% set id_prefix = "shelf-" %}
+<section id="shelves-section" class="shelves" aria-labelledby="shelves-heading">
+  <details{% if shelves_open %} open{% endif %}>
+    <summary><h2 id="shelves-heading" class="inline-heading">Półki ({{ shelves | length }})</h2></summary>
+    <form id="add-shelf-form" method="post" action="/shelves"
+          hx-post="/shelves" hx-target="#shelves-section" hx-swap="outerHTML">
+      <div class="field">
+        <label for="shelf-name">Nazwa nowej półki</label>
+        <input type="text" id="shelf-name" name="name" value="{{ shelf_form.get('name', '') }}" required maxlength="60"
+               {% if shelf_errors and shelf_errors.get('name') %}aria-invalid="true" aria-describedby="shelf-name-error"{% endif %}>
+        {% with field = "name", errors = shelf_errors %}{% include "partials/field_error.html" %}{% endwith %}
+      </div>
+      <button type="submit">Dodaj półkę</button>
+    </form>
+    {% if shelves %}
+    <ul class="shelf-list">
+      {% for shelf in shelves %}
+      <li id="shelf-{{ shelf.id }}">
+        <span class="shelf-name">{{ shelf.name }}</span>
+        <span class="shelf-count">({{ shelf.book_count | books_count }})</span>
+        <form method="get" action="/shelves/{{ shelf.id }}/delete">
+          <button type="submit" class="danger" aria-label="Usuń półkę {{ shelf.name }}"
+                  hx-post="/shelves/{{ shelf.id }}/delete" hx-target="#shelves-section" hx-swap="outerHTML"
+                  hx-confirm="Usunąć półkę «{{ shelf.name }}»? Książki zostaną na liście.">Usuń</button>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="empty">Nie masz jeszcze żadnej półki.</p>
+    {% endif %}
+  </details>
+</section>

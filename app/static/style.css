@@ -191,6 +191,48 @@ button[aria-pressed="true"] {
   font-size: 0.8125rem;
 }
 
+.shelves {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+}
+
+.shelves summary {
+  cursor: pointer;
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.inline-heading {
+  display: inline;
+  margin: 0;
+}
+
+.shelf-list {
+  list-style: none;
+  padding: 0;
+}
+
+.shelf-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.shelf-list form {
+  margin-left: auto;
+}
+
+.shelf-count,
+.empty {
+  color: var(--muted);
+}
+
 table.books {
   width: 100%;
   border-collapse: collapse;
