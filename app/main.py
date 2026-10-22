@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 from app.config import Settings, load_settings
+from app.db import create_db_engine, create_session_factory, run_migrations
 from app.errors import register_api_error_handlers
 from app.routers.views import pages
 
@@ -17,8 +18,12 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
-        app.state.settings = app_settings
+        engine = create_db_engine(app_settings.db_path)
+        run_migrations(engine)
+        app.state.engine = engine
+        app.state.session_factory = create_session_factory(engine)
         yield
+        engine.dispose()
 
     app = FastAPI(title="Lista lektur", lifespan=lifespan)
     app.state.settings = app_settings
