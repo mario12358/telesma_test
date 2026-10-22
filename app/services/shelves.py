@@ -31,6 +31,13 @@ def list_shelves(session: Session) -> list[ShelfWithCount]:
     return [ShelfWithCount(*row) for row in session.execute(statement)]
 
 
+def get_shelf(session: Session, shelf_id: int) -> ShelfWithCount:
+    for shelf in list_shelves(session):
+        if shelf.id == shelf_id:
+            return shelf
+    raise NotFoundError(SHELF_NOT_FOUND)
+
+
 def _validated_name(session: Session, raw_name: str) -> str:
     name = raw_name.strip()
     if not name:
