@@ -15,7 +15,7 @@
 
 - **Start**: 2026-10-22
 - **Status**: In progress
-- **Progress**: 13/18 tasks completed (Phase 1 ✅, Phase 2 ✅)
+- **Progress**: 17/18 tasks completed (Phase 1 ✅, Phase 2 ✅, Phase 3 ✅)
 
 ## Test status
 
@@ -38,10 +38,13 @@ First full-suite run of the project; CI job `test` green on every PR (#1–#4).
 **Regression after Phase 2 (2026-10-22) — GREEN:** `pytest -q` 197/0, e2e `pytest -m e2e --browser-channel chrome` 6/0, `ruff check .` clean.
 Compared with 85 after Phase 1: +112 tests (shelves/notes API, UI shell, both screens, e2e).
 
+**Regression after Phase 3 (2026-10-22) — GREEN:** `pytest -q` 240/0, e2e 10/0 (Chrome), `ruff check .` clean.
+Compared with 197 + 6 after Phase 2: +43 tests (filters, CSV export, stats) and +4 e2e.
+
 | Metric | Value |
 |--------|-------|
-| Total tests | 203 |
-| Pass | 203 |
+| Total tests | 250 |
+| Pass | 250 |
 | Fail | 0 |
 | Skip | 0 |
 | Last run | 2026-10-22 |
@@ -63,6 +66,10 @@ Compared with 85 after Phase 1: +112 tests (shelves/notes API, UI shell, both sc
 | 2.6 Ekran «Szczegóły» | ✅ | 183/183 | 1 | PR #11 | 2026-10-22 |
 | 2.7 Półki i notatki w szczegółach | ✅ | 197/197 | 1 | PR #12 | 2026-10-22 |
 | 2.8 E2E fazy 2 | ✅ | 197 + 6 e2e | 2 | PR #13 | 2026-10-22 |
+| 3.1 Pasek filtrów | ✅ | 215 + 6 e2e | 2 | PR #14 | 2026-10-22 |
+| 3.2 Eksport CSV | ✅ | 222/222 | 1 | PR #15 | 2026-10-22 |
+| 3.3 Statystyki | ✅ | 240/240 | 1 | PR #16 | 2026-10-22 |
+| 3.4 E2E fazy 3 | ✅ | 240 + 10 e2e | 1 | PR #17 | 2026-10-22 |
 
 ## Change history
 
@@ -116,4 +123,6 @@ below the table with the prefix `> ⚠ Info:` so the user can see what happened 
 - [2026-10-22] Tag `telesma/phase-1`: audyt OSV zablokował `certifi 2026.7.22` (GHSA-6q48-6c7w-9gw2, krytyczna) — podbito do 2026.10.19 oraz `opentelemetry-api` do 1.45.1 (PR #6); tag założony po scaleniu.
 - [2026-10-22] Tag `telesma/phase-1`: dead-entry ostrzegał o `status_label` bez wywołań — podłączony jako filtr Jinja w 2.3.
 - [2026-10-22] Task 2.6: SAST ostrzegał o atrybutach wstawianych jako gotowy ciąg (`{{ hx_attrs }}`) — przepisane na jawne atrybuty w cudzysłowach (PR #11).
+- [2026-10-22] Tag `telesma/phase-2`: dead-entry zgłosił 9 tras widoków «bez klienta» (fingerprinty 842e6d99bc7d, 22c86514cd9d, 8c3bd41c62a1, 130c5330f4ea, 6e9bed5954fe, c86483257381, 38240eec6a2f) — fałszywy alarm: szablony Jinja wołają je ścieżkami z `{{ id }}`, pokryte testami widoków i e2e; bez wyjątku w CHECK_EXCEPTIONS.md (decyzja człowieka).
+- [2026-10-22] Task 3.1: e2e — `get_by_label("Autor")` dopasowywał też «Szukaj w tytule lub autorze» (tryb ścisły) → `exact=True`.
 - [2026-10-22] Task 2.8: drugi zapis w e2e wypełniał formularz przed podmianą HTMX po pierwszym — test czeka na wiersz (`expect(...).to_be_visible()`) przed kolejną akcją.

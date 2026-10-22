@@ -168,7 +168,7 @@
   - Specky: (req: 01M5JNJC92ST45R6HKAP0C74SZ v1 @1832259)
   - Specky criteria: (crit: 01M5JNJC9EBJB0ZHNAM076HF2Q) (crit: 01M5JNJC9E527FQCDGD1MXYGDR) (crit: 01M5JNJC9ERY4G58GS31GB52B3)
 - [x] Test: 3.3 — jednostkowy zaokrąglenia i null; integracyjny endpoint; odpowiedzi HTMX zawierają fragment OOB nagłówka
-- [ ] Task 3.4: E2E test — Playwright: filtry łączone (status + półka + q, porównanie z API), eksport CSV (pobranie pliku, nagłówek, zawartość), statystyki w nagłówku po dodaniu, zmianie statusu, ocenie i usunięciu książki; dodanie do jobu `e2e` w CI (requires: 3.1, 3.2, 3.3) (spec: lista-lektur.md) (tech: playwright, python)
+- [x] Task 3.4: E2E test — Playwright: filtry łączone (status + półka + q, porównanie z API), eksport CSV (pobranie pliku, nagłówek, zawartość), statystyki w nagłówku po dodaniu, zmianie statusu, ocenie i usunięciu książki; dodanie do jobu `e2e` w CI (requires: 3.1, 3.2, 3.3) (spec: lista-lektur.md) (tech: playwright, python)
   - AC: wynik filtrów w UI = zbiór z `GET /api/books` (A3)
   - AC: pobrany CSV parsuje się i zawiera wszystkie książki (A6)
   - AC: liczniki w nagłówku zgodne z bazą po każdej operacji (A7)
