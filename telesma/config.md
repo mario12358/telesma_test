@@ -2,7 +2,7 @@
 
 ## Project
 
-- **Clarified**: no
+- **Clarified**: yes
   <!-- "no"  = needs the clarification phase (Telesma reads telesma/spec/, generates questions, then telesma/state/PLAN.md) -->
   <!-- "yes" = project ready for implementation (telesma/state/PLAN.md is complete) -->
 - **Language**: pl
@@ -434,77 +434,77 @@
 
 ## Permissions
 
-<!-- Telesma syncs this section with .claude/settings.local.json at every start:          -->
-<!-- 1. At startup: telesma/config.md ∪ settings.local.json → written to both files       -->
-<!-- 2. During the session: the Claude CLI itself appends "allow always" to settings.local.json -->
-<!-- 3. At the next start: new entries are merged back here                             -->
+<!-- Telesma syncs this section with .claude/settings.local.json on every start:        -->
+<!-- 1. At startup: telesma/config.md ∪ settings.local.json → written to both files     -->
+<!-- 2. During the session: the Claude CLI itself adds "allow always" to the settings -->
+<!-- 3. On the next start: the new entries are merged back in here                    -->
 
 - **Mode**: acceptEdits
-  <!-- default            = asks about every tool                          -->
-  <!-- acceptEdits        = auto-accepts Edit/Write, asks about Bash        -->
-  <!-- bypassPermissions  = no prompts at all (risky, e.g. rm -rf)          -->
-  <!-- plan               = planning mode without modifying files          -->
+  <!-- default            = asks about every tool                        -->
+  <!-- acceptEdits        = auto-accepts Edit/Write, asks about Bash     -->
+  <!-- bypassPermissions  = no questions at all (risky, e.g. rm -rf)     -->
+  <!-- plan               = planning mode without modifying files        -->
 
 - **Auto-sync new permissions**: yes
-  <!-- yes = permissions granted during a session ("allow always") are added to this list -->
-  <!-- at the next start, so you are not asked again                                      -->
-  <!-- no  = only this file is the source of truth, new entries from the session are ignored -->
+  <!-- yes = permissions granted in a session ("allow always") are added to this list -->
+  <!-- on the next start, so that they are not asked again                            -->
+  <!-- no = only this file is the source of truth, new session entries are ignored    -->
 
 - **Generalize permissions**: yes
-  <!-- yes = exact commands approved during a session are promoted to Bash(family:*) patterns -->
-  <!-- for a curated list of safe families (tests, linters, git add/commit, docker          -->
-  <!-- compose, ...). Example: approving "npm test -- --coverage" gives Bash(npm test:*).   -->
-  <!-- Destructive/network ones (rm, sudo, curl, git push) never — those always ask.        -->
-  <!-- no  = entries stay exactly as approved                                              -->
+  <!-- yes = exact commands accepted in a session are promoted to Bash(family:*)       -->
+  <!-- patterns for a curated list of safe families (tests, linters, git add/commit,    -->
+  <!-- docker compose, ...). Destructive/network ones (rm, sudo, curl, git push) never. -->
+  <!-- no = entries stay exactly as they were approved                                 -->
 
 - **Allowed commands**:
-  - mcp__claude_ai_Specky
-  - mcp__plugin_specky_specky-record
-  - mcp__plugin_specky_specky
-  - Bash(gh pr status:*)
-  - Bash(gh pr diff:*)
-  - Bash(gh pr checks:*)
-  - Bash(gh pr view:*)
-  - Bash(gh pr list:*)
-  - Bash(gh pr create:*)
-  - Bash(gh repo view:*)
   - Bash(gh auth status)
-  - Bash(git branch -d:*)
-  - Bash(git branch --list:*)
-  - Bash(git branch --show-current)
-  - Bash(git rev-parse:*)
-  - Bash(git merge-base:*)
-  - Bash(git rebase:*)
-  - Bash(git switch:*)
-  - Bash(git checkout main)
-  - Bash(git checkout -b:*)
-  - Bash(git pull:*)
-  - Bash(git fetch:*)
-  - Bash(git push --force-with-lease origin task-:*)
-  - Bash(git push origin task-:*)
-  - Bash(git push -u origin task-:*)
-  - Bash(mkdir:*)
-  - Bash(ls:*)
+  - Bash(gh pr checks:*)
+  - Bash(gh pr create:*)
+  - Bash(gh pr diff:*)
+  - Bash(gh pr list:*)
+  - Bash(gh pr status:*)
+  - Bash(gh pr view:*)
+  - Bash(gh repo view:*)
   - Bash(git add:*)
+  - Bash(git branch --list:*)
+  - Bash(git branch -d:*)
+  - Bash(git branch:*)
+  - Bash(git checkout -b:*)
+  - Bash(git checkout main)
   - Bash(git commit:*)
-  - Bash(git status)
-  - Bash(git diff:*)
-  - Bash(git log:*)
-  - Bash(git tag:*)
   - Bash(git describe:*)
+  - Bash(git diff:*)
+  - Bash(git fetch:*)
+  - Bash(git log:*)
+  - Bash(git merge-base:*)
+  - Bash(git pull:*)
+  - Bash(git push --force-with-lease origin task-:*)
+  - Bash(git push -u origin task-:*)
+  - Bash(git push origin task-:*)
+  - Bash(git rebase:*)
+  - Bash(git rev-parse:*)
+  - Bash(git status:*)
+  - Bash(git switch:*)
+  - Bash(git tag:*)
+  - Bash(ls:*)
+  - Bash(mkdir:*)
+  - Bash(mypy:*)
+  - Bash(pip:*)
+  - Bash(poetry:*)
+  - Bash(pyright:*)
   - Bash(pytest:*)
   - Bash(python3:*)
   - Bash(python:*)
-  - Bash(pip:*)
-  - Bash(uv:*)
-  - Bash(poetry:*)
   - Bash(ruff:*)
-  - Bash(mypy:*)
-  - Bash(pyright:*)
+  - Bash(uv:*)
   - WebFetch(domain:claude.ai)
+  - mcp__claude_ai_Specky
+  - mcp__plugin_specky_specky
+  - mcp__plugin_specky_specky-record
 
 - **Denied commands**:
-  - Bash(rm -rf:*)
-  - Bash(sudo:*)
   - Bash(git push --force:*)
   - Bash(git reset --hard:*)
+  - Bash(rm -rf:*)
+  - Bash(sudo:*)
+
