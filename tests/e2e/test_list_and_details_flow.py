@@ -7,9 +7,9 @@ pytestmark = pytest.mark.e2e
 
 
 def _add_book(page: Page, title: str, author: str, year: str = "") -> None:
-    page.get_by_label("Tytuł").fill(title)
-    page.get_by_label("Autor").fill(author)
-    page.get_by_label("Rok").fill(year)
+    page.get_by_label("Tytuł", exact=True).fill(title)
+    page.get_by_label("Autor", exact=True).fill(author)
+    page.get_by_label("Rok", exact=True).fill(year)
     page.get_by_role("button", name="Dodaj", exact=True).click()
 
 
@@ -25,7 +25,7 @@ def test_book_lifecycle_through_list_and_details(app_url: str, confirm_dialogs: 
     _add_book(page, "Lalka", "Bolesław Prus", "1890")
     row = _row(page, "Lalka")
     expect(row).to_be_visible()
-    expect(page.get_by_label("Tytuł")).to_have_value("")
+    expect(page.get_by_label("Tytuł", exact=True)).to_have_value("")
 
     row.get_by_role("button", name="czytam").click()
     expect(_row(page, "Lalka").get_by_role("button", name="czytam")).to_have_attribute(
@@ -41,7 +41,7 @@ def test_book_lifecycle_through_list_and_details(app_url: str, confirm_dialogs: 
     expect(page).to_have_url(re.compile(r"/books/\d+$"))
     expect(page.get_by_role("heading", level=1)).to_have_text("Lalka")
 
-    author = page.get_by_label("Autor")
+    author = page.get_by_label("Autor", exact=True)
     author.fill("B. Prus")
     author.press("Tab")
     expect(page.locator("#field-author").get_by_role("status")).to_have_text("Zapisano")
@@ -58,7 +58,7 @@ def test_book_lifecycle_through_list_and_details(app_url: str, confirm_dialogs: 
     expect(page.locator("#notes-section li").first).to_contain_text("Świetny portret epoki")
 
     page.reload()
-    expect(page.get_by_label("Autor")).to_have_value("B. Prus")
+    expect(page.get_by_label("Autor", exact=True)).to_have_value("B. Prus")
     expect(page.locator("#rating-4")).to_be_checked()
     expect(page.get_by_label("Klasyka")).to_be_checked()
 
@@ -87,24 +87,24 @@ def test_validation_error_appears_next_to_the_field(app_url: str, page: Page):
     _add_book(page, " lalka ", "bolesław prus")
     error = page.locator("#new-title-error")
     expect(error).to_contain_text("już na liście")
-    expect(page.get_by_label("Tytuł")).to_have_attribute("aria-invalid", "true")
+    expect(page.get_by_label("Tytuł", exact=True)).to_have_attribute("aria-invalid", "true")
 
 
 def test_details_reject_invalid_year_at_the_field(app_url: str, page: Page):
     page.goto(app_url)
     _add_book(page, "Lalka", "Bolesław Prus", "1890")
     _row(page, "Lalka").get_by_role("link", name="Lalka").click()
-    year = page.get_by_label("Rok")
+    year = page.get_by_label("Rok", exact=True)
     year.fill("1200")
     year.press("Tab")
     expect(page.locator("#detail-year-error")).to_contain_text("Rok musi być z zakresu 1450")
     page.reload()
-    expect(page.get_by_label("Rok")).to_have_value("1890")
+    expect(page.get_by_label("Rok", exact=True)).to_have_value("1890")
 
 
 def test_book_can_be_added_with_the_keyboard_only(app_url: str, page: Page):
     page.goto(app_url)
-    page.get_by_label("Tytuł").focus()
+    page.get_by_label("Tytuł", exact=True).focus()
     page.keyboard.type("Wiedźmin")
     page.keyboard.press("Tab")
     page.keyboard.type("Andrzej Sapkowski")

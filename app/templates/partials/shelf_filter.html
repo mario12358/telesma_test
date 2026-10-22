@@ -1,0 +1,6 @@
+<select id="filter-shelf" name="shelf"{% if oob %} hx-swap-oob="true"{% endif %}>
+  <option value="">wszystkie półki</option>
+  {% for shelf in shelves %}
+  <option value="{{ shelf.id }}"{% if filters.shelf_id == shelf.id %} selected{% endif %}>{{ shelf.name }}</option>
+  {% endfor %}
+</select>

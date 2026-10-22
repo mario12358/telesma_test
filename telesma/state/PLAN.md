@@ -144,14 +144,14 @@
 
 ### Phase 3: Szukanie i filtry, eksport CSV, statystyki
 
-- [ ] Task 3.1: Pasek filtrów na ekranie „Lista” — przyciski statusu (wszystkie/do przeczytania/czytam/przeczytana), lista rozwijana półek, pole `q` z `hx-trigger="keyup changed delay:300ms"` i przyciskiem „Szukaj” bez JS; filtry łączone w query string, `hx-push-url`, podmiana tylko listy (requires: 2.4, 2.5) (spec: lista-lektur.md) (tech: htmx, fastapi, accessibility)
+- [x] Task 3.1: Pasek filtrów na ekranie „Lista” — przyciski statusu (wszystkie/do przeczytania/czytam/przeczytana), lista rozwijana półek, pole `q` z `hx-trigger="keyup changed delay:300ms"` i przyciskiem „Szukaj” bez JS; filtry łączone w query string, `hx-push-url`, podmiana tylko listy (requires: 2.4, 2.5) (spec: lista-lektur.md) (tech: htmx, fastapi, accessibility)
   - AC: entry — pasek filtrów nad listą na `GET /`; parametry `status`, `shelf`, `q`
   - AC: filtry statusu, półki i szukania łączą się; wynik zgodny z `GET /api/books` z tymi samymi parametrami (A3, lista-lektur.md:122)
   - AC: szukanie w trakcie pisania z opóźnieniem ok. 300 ms, bez przeładowania (lista-lektur.md:92)
   - AC: odświeżenie strony zachowuje aktywne filtry z URL
   - Specky: (req: 01M5JNJCJWM1SF2P2Y1NWZXSVY v1 @e99ec66)
   - Specky criteria: (crit: 01M5JNJCK89CNSWP5DT8SNJBCD) (crit: 01M5JNJCK876SZCQFJ4EX5RDVP) (crit: 01M5JNJCK8EWG0VB920K3TTRQ9)
-- [ ] Test: 3.1 — render paska, kombinacje parametrów dają ten sam zbiór id co API, fragment przy `HX-Request`, formularz bez JS
+- [x] Test: 3.1 — render paska, kombinacje parametrów dają ten sam zbiór id co API, fragment przy `HX-Request`, formularz bez JS
 - [ ] Task 3.2: `GET /api/export.csv` — wszystkie książki, kolumny tytuł,autor,rok,status,ocena,półki (nazwy rozdzielone `;`, alfabetycznie), UTF-8 z BOM, przecinek, etykiety PL statusu, `Content-Disposition: attachment; filename="lektury.csv"`; link „Eksport CSV” w nagłówku (requires: 2.1, 2.3) (spec: lista-lektur.md) (tech: python, fastapi, htmx)
   - AC: entry — link „Eksport CSV” w nagłówku obu ekranów (Q2)
   - AC: plik zawiera nagłówek i wiersz dla każdej książki z kolumnami z sekcji 4 (A6, lista-lektur.md:81)

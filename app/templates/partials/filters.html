@@ -1,0 +1,22 @@
+{% set active_status = filters.status.value if filters.status else "" %}
+<form id="filters" class="filters" method="get" action="/" role="search" aria-label="Filtry listy"
+      hx-get="/" hx-trigger="change, submit" hx-target="#book-list" hx-swap="outerHTML" hx-push-url="true">
+  <fieldset class="status-filter">
+    <legend>Status</legend>
+    {% for value, label in STATUS_FILTER_OPTIONS %}
+    <input type="radio" id="filter-status-{{ value or 'all' }}" name="status" value="{{ value }}"{% if active_status == value %} checked{% endif %}>
+    <label for="filter-status-{{ value or 'all' }}">{{ label }}</label>
+    {% endfor %}
+  </fieldset>
+  <div class="field">
+    <label for="filter-shelf">Półka</label>
+    {% include "partials/shelf_filter.html" %}
+  </div>
+  <div class="field filter-query">
+    <label for="filter-q">Szukaj w tytule lub autorze</label>
+    <input type="search" id="filter-q" name="q" value="{{ filters.query or '' }}"
+           hx-get="/" hx-trigger="input changed delay:300ms, search" hx-target="#book-list" hx-swap="outerHTML"
+           hx-include="#filters" hx-push-url="true">
+  </div>
+  <button type="submit" class="secondary">Szukaj</button>
+</form>
