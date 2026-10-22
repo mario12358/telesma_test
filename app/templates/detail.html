@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ book.title }} — Lista lektur{% endblock %}
+{% block content %}
+<p><a href="/">← Wróć do listy</a></p>
+{% include "partials/detail_heading.html" %}
+<form id="book-form" class="book-form" method="post" action="/books/{{ book.id }}">
+  {% for field in ["title", "author", "year", "status", "rating"] %}
+  {% include "partials/detail_field.html" %}
+  {% endfor %}
+  <noscript><button type="submit">Zapisz</button></noscript>
+</form>
+<p class="hint">Dodano: {{ book.created_at | date_pl }} · Zmieniono: {{ book.updated_at | date_pl }}</p>
+{% block detail_sections %}{% endblock %}
+<form class="delete-book" method="get" action="/books/{{ book.id }}/delete">
+  <button type="submit" class="danger" hx-post="/books/{{ book.id }}/delete"
+          hx-confirm="Usunąć książkę «{{ book.title }}»? Jej notatki też zostaną usunięte.">Usuń książkę</button>
+</form>
+{% endblock %}

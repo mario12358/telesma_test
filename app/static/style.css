@@ -233,6 +233,72 @@ button[aria-pressed="true"] {
   color: var(--muted);
 }
 
+.book-form {
+  max-width: 32rem;
+}
+
+.rating {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.rating legend {
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Radios stay focusable for keyboards; the stars are their labels. */
+.rating input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.rating label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.rating label.star {
+  font-size: 1.5rem;
+  color: var(--star);
+}
+
+.rating label.no-rating {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.rating input:focus-visible + label {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.rating input:checked + label.no-rating {
+  font-weight: 700;
+}
+
+.rating[disabled] label {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.delete-book {
+  margin-top: 2rem;
+}
+
 table.books {
   width: 100%;
   border-collapse: collapse;
