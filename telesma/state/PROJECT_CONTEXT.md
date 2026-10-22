@@ -96,6 +96,7 @@ Widoki HTML formularzy (bez JS) używają POST + 303 (PRG) na ścieżkach poza `
 | Problem | Solution |
 |---------|----------|
 | Systemowy Python 3.13 bez certyfikatów SSL, brak 3.12 | `uv venv --python 3.12 .venv`; instalacja przez `uv pip install` |
+| e2e: htmx podmienia OOB przed głównym celem — kolejna akcja może trafić w stary formularz | Przed następną akcją czekać na stan nowego fragmentu (np. pusty `Tytuł`), nie tylko na wiersz z OOB |
 | `playwright install --with-deps chromium` w CI trwa ~10 min | e2e na preinstalowanym Chrome runnera: `--browser-channel chrome` |
 | Ruff uznaje `alembic` za moduł projektu (katalog `alembic/`) | `known-third-party = ["alembic"]` w `pyproject.toml` |
 | Mutacja kodu produkcyjnego (np. wyłączenie reguły) blokowana przez klasyfikator auto mode | Czułość testu reguły uzasadniać wartością domyślną/danymi testu; zapis w Problem log |

@@ -84,6 +84,8 @@ def test_validation_error_appears_next_to_the_field(app_url: str, page: Page):
     page.goto(app_url)
     _add_book(page, "Lalka", "Bolesław Prus")
     expect(_row(page, "Lalka")).to_be_visible()
+    # htmx swaps the out-of-band list before the form itself: wait for the fresh, empty form.
+    expect(page.get_by_label("Tytuł", exact=True)).to_have_value("")
     _add_book(page, " lalka ", "bolesław prus")
     error = page.locator("#new-title-error")
     expect(error).to_contain_text("już na liście")
