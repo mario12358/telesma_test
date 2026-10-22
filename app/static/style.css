@@ -191,6 +191,60 @@ button[aria-pressed="true"] {
   font-size: 0.8125rem;
 }
 
+.filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr auto;
+  gap: 0.75rem;
+  align-items: end;
+  margin-bottom: 1rem;
+}
+
+.status-filter {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.status-filter legend {
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Status filter: radios that look and behave like a group of toggle buttons. */
+.status-filter input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.status-filter label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--accent);
+  border-radius: 0.25rem;
+  color: var(--accent);
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.status-filter input:checked + label {
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+.status-filter input:focus-visible + label {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
 .shelves {
   margin: 1rem 0;
   padding: 0.5rem 1rem;
@@ -376,7 +430,8 @@ table.books td {
 
 /* One column below 640 px: the table turns into cards. */
 @media (max-width: 639px) {
-  .form-row {
+  .form-row,
+  .filters {
     grid-template-columns: 1fr;
   }
 

@@ -45,8 +45,15 @@ templates.env.filters.update(
     status_label=status_label,
     stars=rating_stars,
 )
+STATUS_FILTER_OPTIONS = [("", "wszystkie")] + [
+    (status.value, label) for status, label in STATUS_LABELS.items()
+]
+
 templates.env.globals.update(
-    STATUS_LABELS=STATUS_LABELS, BookStatus=BookStatus, MAX_RATING=MAX_RATING
+    STATUS_LABELS=STATUS_LABELS,
+    STATUS_FILTER_OPTIONS=STATUS_FILTER_OPTIONS,
+    BookStatus=BookStatus,
+    MAX_RATING=MAX_RATING,
 )
 
 

@@ -3,7 +3,7 @@
   <details{% if shelves_open %} open{% endif %}>
     <summary><h2 id="shelves-heading" class="inline-heading">Półki ({{ shelves | length }})</h2></summary>
     <form id="add-shelf-form" method="post" action="/shelves"
-          hx-post="/shelves" hx-target="#shelves-section" hx-swap="outerHTML">
+          hx-post="/shelves" hx-target="#shelves-section" hx-swap="outerHTML" hx-include="#filters">
       <div class="field">
         <label for="shelf-name">Nazwa nowej półki</label>
         <input type="text" id="shelf-name" name="name" value="{{ shelf_form.get('name', '') }}" required maxlength="60"
@@ -20,7 +20,7 @@
         <span class="shelf-count">({{ shelf.book_count | books_count }})</span>
         <form method="get" action="/shelves/{{ shelf.id }}/delete">
           <button type="submit" class="danger" aria-label="Usuń półkę {{ shelf.name }}"
-                  hx-post="/shelves/{{ shelf.id }}/delete" hx-target="#shelves-section" hx-swap="outerHTML"
+                  hx-post="/shelves/{{ shelf.id }}/delete" hx-target="#shelves-section" hx-swap="outerHTML" hx-include="#filters"
                   hx-confirm="Usunąć półkę «{{ shelf.name }}»? Książki zostaną na liście.">Usuń</button>
         </form>
       </li>
