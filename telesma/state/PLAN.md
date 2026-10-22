@@ -134,7 +134,7 @@
   - Specky: (req: 01M5JNJCQ3R4AE48RKKE4G98B7 v1 @4b7c65a)
   - Specky criteria: (crit: 01M5JNJCQE7A0ZQDQNNA42SX0S) (crit: 01M5JNJCQEVYGC2P99P6Q94253) (crit: 01M5JNJCQERARJF7345H59VD3K)
 - [x] Test: 2.7 — checkboxy półek (HTMX i bez JS), dodanie/usunięcie notatki, kolejność, walidacja treści przy polu
-- [ ] Task 2.8: E2E test — dodanie książki → zmiana statusu w wierszu → szczegóły: edycja autora, ocena przy `czytam`, półka (dodanie, zaznaczenie), notatka dodanie/usunięcie → usunięcie książki; job `e2e` w CI (requires: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7) (spec: lista-lektur.md) (tech: playwright, python, github-actions)
+- [x] Task 2.8: E2E test — dodanie książki → zmiana statusu w wierszu → szczegóły: edycja autora, ocena przy `czytam`, półka (dodanie, zaznaczenie), notatka dodanie/usunięcie → usunięcie książki; job `e2e` w CI (requires: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7) (spec: lista-lektur.md) (tech: playwright, python, github-actions)
   - AC: fixture uruchamia uvicorn na wolnym porcie z osobnym plikiem bazy (A19)
   - AC: test przechodzi przez ekran „Lista” i „Szczegóły” (A8, lista-lektur.md:128-129)
   - AC: CI uruchamia e2e na Chromium na PR i main; raport `reports/junit-e2e.xml` w artefakcie JUnit (Q4)

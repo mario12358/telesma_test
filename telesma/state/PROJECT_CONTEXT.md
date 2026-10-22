@@ -74,6 +74,7 @@ Widoki HTML formularzy (bez JS) używają POST + 303 (PRG) na ścieżkach poza `
 | 2026-10-22 | `app/routers/views/common.py` (`list_context`, `redirect`, `FormText`) współdzielony przez routery widoków | Routery nie importują się nawzajem |
 | 2026-10-22 | Edycja w miejscu: `POST /books/{id}/fields/{field}` (HTMX, `hx-trigger=change`) zapisuje TYLKO pole z URL; zmiana statusu odświeża OOB ocenę, tytułu — nagłówek; bez JS `POST /books/{id}` + `<noscript>` «Zapisz» | Q3 |
 | 2026-10-22 | Ocena jako radio 1–5 + «brak oceny», ukryte wizualnie, gwiazdki w etykietach; `fieldset disabled` + podpowiedź przy `to_read` | S1, a11y: klawiatura i czytnik ekranu |
+| 2026-10-22 | 📌 e2e: `tests/e2e/`, marker `e2e`, domyślnie wyłączone (`addopts -m 'not e2e'`); uruchomienie `pytest -m e2e --browser chromium --browser-channel chrome`; fixture `app_url` = uvicorn w wątku na wolnym porcie z własną bazą | A19, Q4 |
 | 2026-10-22 | Akcje GitHub przypięte do SHA (checkout v4.2.2, setup-python v5.6.0, upload-artifact v4.6.2) | Wytyczne github-actions.md |
 
 ## Known problems and solutions
@@ -105,8 +106,8 @@ zależności `get_session` (1.2). Statystyki w nagłówku layoutu liczy serwis s
 <!-- rotates here. Appending more "turn of 08-19 closed" paragraphs turns this               -->
 <!-- section into a second, unbounded report in the prompt of every session.                 -->
 
-- Last completed task: 2.7 Półki i notatki na ekranie «Szczegóły»
-- Next task: 2.8 E2E test fazy 2
+- Last completed task: 2.8 E2E test fazy 2 (Phase 2 ✅)
+- Next task: 3.1 Pasek filtrów
 - Do zrobienia w 3.1: odpowiedzi sekcji «Półki» mają też odświeżać (OOB) listę rozwijaną półek w pasku filtrów
 - Tag `telesma/phase-1` założony po poprawce audytu zależności (PR #6)
 - Blockers: brak

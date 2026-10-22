@@ -20,5 +20,6 @@ known-third-party = ["alembic"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-p no:cacheprovider"
+# Browser e2e tests run only on request: `pytest -m e2e --browser-channel chrome`.
+addopts = "-p no:cacheprovider -m 'not e2e'"
 markers = ["e2e: browser end-to-end tests (Playwright)"]
