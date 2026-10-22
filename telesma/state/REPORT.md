@@ -15,7 +15,8 @@
 
 - **Start**: 2026-10-22
 - **Status**: Completed
-- **Progress**: 18/18 tasks completed (Phase 1–4 ✅), release `v0.1.0`
+- **Progress**: 18/18 tasks completed (Phase 1–4 ✅), release `v0.1.0` (tag na 4d90a9b), Specky: 20/20 wymagań `code_ready`, migawka `01M5JT6BV0JNEECM1MAMGNYT4S`
+- **Pending (human)**: scenariusze ręczne `docs/test-scenarios/v0.1.0.md`; decyzja `done` w Specky; ewentualne wyjątki dead-entry w CHECK_EXCEPTIONS.md
 
 ## Test status
 
@@ -38,13 +39,15 @@ First full-suite run of the project; CI job `test` green on every PR (#1–#4).
 **Regression after Phase 2 (2026-10-22) — GREEN:** `pytest -q` 197/0, e2e `pytest -m e2e --browser-channel chrome` 6/0, `ruff check .` clean.
 Compared with 85 after Phase 1: +112 tests (shelves/notes API, UI shell, both screens, e2e).
 
+**Release v0.1.0 (2026-10-23) — GREEN:** `main` f2cfebf: `pytest -q` 262/0 (+22 testy kontraktowe), e2e 10/0 na Chrome, ruff czysto. Tag `v0.1.0` na 4d90a9b (zielony `main`).
+
 **Regression after Phase 3 (2026-10-22) — GREEN:** `pytest -q` 240/0, e2e 10/0 (Chrome), `ruff check .` clean.
 Compared with 197 + 6 after Phase 2: +43 tests (filters, CSV export, stats) and +4 e2e.
 
 | Metric | Value |
 |--------|-------|
-| Total tests | 250 |
-| Pass | 250 |
+| Total tests | 272 |
+| Pass | 272 |
 | Fail | 0 |
 | Skip | 0 |
 | Last run | 2026-10-22 |
