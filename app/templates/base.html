@@ -13,6 +13,7 @@
   <header class="site-header">
     <a class="site-name" href="/">Lista lektur</a>
     {% block header_extra %}{% endblock %}
+    <a class="export-link" href="/api/export.csv" download>Eksport CSV</a>
   </header>
   <main id="main" tabindex="-1">
     {% block content %}{% endblock %}

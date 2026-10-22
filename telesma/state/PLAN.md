@@ -152,14 +152,14 @@
   - Specky: (req: 01M5JNJCJWM1SF2P2Y1NWZXSVY v1 @e99ec66)
   - Specky criteria: (crit: 01M5JNJCK89CNSWP5DT8SNJBCD) (crit: 01M5JNJCK876SZCQFJ4EX5RDVP) (crit: 01M5JNJCK8EWG0VB920K3TTRQ9)
 - [x] Test: 3.1 — render paska, kombinacje parametrów dają ten sam zbiór id co API, fragment przy `HX-Request`, formularz bez JS
-- [ ] Task 3.2: `GET /api/export.csv` — wszystkie książki, kolumny tytuł,autor,rok,status,ocena,półki (nazwy rozdzielone `;`, alfabetycznie), UTF-8 z BOM, przecinek, etykiety PL statusu, `Content-Disposition: attachment; filename="lektury.csv"`; link „Eksport CSV” w nagłówku (requires: 2.1, 2.3) (spec: lista-lektur.md) (tech: python, fastapi, htmx)
+- [x] Task 3.2: `GET /api/export.csv` — wszystkie książki, kolumny tytuł,autor,rok,status,ocena,półki (nazwy rozdzielone `;`, alfabetycznie), UTF-8 z BOM, przecinek, etykiety PL statusu, `Content-Disposition: attachment; filename="lektury.csv"`; link „Eksport CSV” w nagłówku (requires: 2.1, 2.3) (spec: lista-lektur.md) (tech: python, fastapi, htmx)
   - AC: entry — link „Eksport CSV” w nagłówku obu ekranów (Q2)
   - AC: plik zawiera nagłówek i wiersz dla każdej książki z kolumnami z sekcji 4 (A6, lista-lektur.md:81)
   - AC: półki w jednej kolumnie rozdzielone `;` (lista-lektur.md:81)
   - AC: odpowiedź zaczyna się od BOM, `text/csv`, nazwa pliku `lektury.csv` (A10)
   - Specky: (req: 01M5JNJC664Y1XZXE9TK4YPB9T v1 @ca7ae9e)
   - Specky criteria: (crit: 01M5JNJC6S8FX7X6XGG4SB2B8C) (crit: 01M5JNJC6SG6Z827GYCE4XNQJ6) (crit: 01M5JNJC6SZ9SKKYRQJZVJ7GTR) (crit: 01M5JNJC6STWJ3EA28NK9ZDT4C)
-- [ ] Test: 3.2 — integracyjny: nagłówek, liczba wierszy, półki `;`, BOM, nagłówki HTTP, puste pola rok/ocena; parsowanie modułem `csv`
+- [x] Test: 3.2 — integracyjny: nagłówek, liczba wierszy, półki `;`, BOM, nagłówki HTTP, puste pola rok/ocena; parsowanie modułem `csv`
 - [ ] Task 3.3: `GET /api/stats` + `StatsService` — liczby `to_read`, `reading`, `read` i `average_rating` (tylko `read` z oceną, zaokrąglone do 0,1, `null` bez ocen); statystyki w nagłówku layoutu, odświeżane out-of-band po każdej operacji HTMX (dodanie, status, ocena, usunięcie) (requires: 2.4, 2.6, 2.7) (spec: lista-lektur.md) (tech: python, fastapi, htmx)
   - AC: entry — `GET /api/stats`; nagłówek layoutu ładuje statystyki przy każdym renderze
   - AC: 2×to_read, 1×reading, 2×read z ocenami 4 i 5 → `to_read=2, reading=1, read=2, average_rating=4.5` (lista-lektur.md:82)
