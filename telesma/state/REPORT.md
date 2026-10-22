@@ -14,8 +14,8 @@
 ## Summary
 
 - **Start**: 2026-10-22
-- **Status**: In progress
-- **Progress**: 17/18 tasks completed (Phase 1 ✅, Phase 2 ✅, Phase 3 ✅)
+- **Status**: Completed
+- **Progress**: 18/18 tasks completed (Phase 1–4 ✅), release `v0.1.0`
 
 ## Test status
 
@@ -70,6 +70,7 @@ Compared with 197 + 6 after Phase 2: +43 tests (filters, CSV export, stats) and 
 | 3.2 Eksport CSV | ✅ | 222/222 | 1 | PR #15 | 2026-10-22 |
 | 3.3 Statystyki | ✅ | 240/240 | 1 | PR #16 | 2026-10-22 |
 | 3.4 E2E fazy 3 | ✅ | 240 + 10 e2e | 1 | PR #17 | 2026-10-22 |
+| 4.1 Wydanie v0.1.0 | ✅ | 240 + 10 e2e | 1 | PR #18, tag `v0.1.0` | 2026-10-22 |
 
 ## Change history
 
@@ -124,5 +125,6 @@ below the table with the prefix `> ⚠ Info:` so the user can see what happened 
 - [2026-10-22] Tag `telesma/phase-1`: dead-entry ostrzegał o `status_label` bez wywołań — podłączony jako filtr Jinja w 2.3.
 - [2026-10-22] Task 2.6: SAST ostrzegał o atrybutach wstawianych jako gotowy ciąg (`{{ hx_attrs }}`) — przepisane na jawne atrybuty w cudzysłowach (PR #11).
 - [2026-10-22] Tag `telesma/phase-2`: dead-entry zgłosił 9 tras widoków «bez klienta» (fingerprinty 842e6d99bc7d, 22c86514cd9d, 8c3bd41c62a1, 130c5330f4ea, 6e9bed5954fe, c86483257381, 38240eec6a2f) — fałszywy alarm: szablony Jinja wołają je ścieżkami z `{{ id }}`, pokryte testami widoków i e2e; bez wyjątku w CHECK_EXCEPTIONS.md (decyzja człowieka).
+- [2026-10-22] Task 4.1: smoke test jednej komendy startu (`uvicorn app.main:app` z `LEKTURY_DB_PATH` w zagnieżdżonym katalogu) — baza utworzona, `GET /` 200, `/api/stats` OK.
 - [2026-10-22] Task 3.1: e2e — `get_by_label("Autor")` dopasowywał też «Szukaj w tytule lub autorze» (tryb ścisły) → `exact=True`.
 - [2026-10-22] Task 2.8: drugi zapis w e2e wypełniał formularz przed podmianą HTMX po pierwszym — test czeka na wiersz (`expect(...).to_be_visible()`) przed kolejną akcją.
