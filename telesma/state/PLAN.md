@@ -15,7 +15,7 @@
 
 ### Phase 1: Szkielet, baza, API książek, CI
 
-- [ ] Task 1.1: Architecture skeleton and conventions — mapa modułów `app/`, przypięte `requirements*.txt`, ruff w `pyproject.toml`, format błędu 422, mapa statusów EN↔PL, adaptacja `specky-ci.yml` do Pythona; wynik do PROJECT_CONTEXT.md (spec: TECHNICAL_GUIDELINES.md) (tech: python, fastapi, github-actions)
+- [x] Task 1.1: Architecture skeleton and conventions — mapa modułów `app/`, przypięte `requirements*.txt`, ruff w `pyproject.toml`, format błędu 422, mapa statusów EN↔PL, adaptacja `specky-ci.yml` do Pythona; wynik do PROJECT_CONTEXT.md (spec: TECHNICAL_GUIDELINES.md) (tech: python, fastapi, github-actions)
   - AC: moduły `app/`: main, config, db, models, schemas, services, routers/api, routers/views, templates, static (A1)
   - AC: po `pip install -r requirements.txt` komenda `uvicorn app.main:app --port 8000` uruchamia aplikację (TG:15, 29)
   - AC: zero zależności npm; `app/static/htmx.min.js` jako jeden plik w przypiętej wersji (TG:30)
@@ -25,7 +25,7 @@
   - Specky: (req: 01M5JNJCXSEXSVD5D2NSP50PR6 v1 @8d7b3a8)
   - Specky: (req: 01M5JNJCTA42TVEMS952S2K1H9 v1 @cf83d75)
   - Specky criteria: (crit: 01M5JNJBEG18125FHAA7RP42K4) (crit: 01M5JNJCTX1C3MCC3C32KJQP5W)
-- [ ] Test: 1.1 — aplikacja startuje, `GET /` zwraca 200 (placeholder), `ruff check .` przechodzi; handler 422 zwraca ustalony format
+- [x] Test: 1.1 — aplikacja startuje, `GET /` zwraca 200 (placeholder), `ruff check .` przechodzi; handler 422 zwraca ustalony format
 - [ ] Task 1.2: Warstwa bazy — engine SQLAlchemy z `LEKTURY_DB_PATH` (domyślnie `data/lektury.db`, katalog tworzony), `PRAGMA foreign_keys=ON` na każdym połączeniu, sesja per request (Depends), konfiguracja Alembic i `alembic upgrade head` w lifespan aplikacji (requires: 1.1) (spec: TECHNICAL_GUIDELINES.md) (tech: python, fastapi, sqlite, sql)
   - AC: start na nieistniejącej ścieżce tworzy plik bazy i tabelę `alembic_version` (TG:8-9)
   - AC: `LEKTURY_DB_PATH` przenosi bazę do wskazanego pliku (TG:18)
