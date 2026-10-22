@@ -35,6 +35,15 @@ class BookUpdate(BaseModel):
     rating: int | None = None
 
 
+class StatsRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    to_read: int
+    reading: int
+    read: int
+    average_rating: float | None
+
+
 class ShelfCreate(BaseModel):
     model_config = ConfigDict(extra="forbid")
 

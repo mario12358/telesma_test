@@ -160,14 +160,14 @@
   - Specky: (req: 01M5JNJC664Y1XZXE9TK4YPB9T v1 @ca7ae9e)
   - Specky criteria: (crit: 01M5JNJC6S8FX7X6XGG4SB2B8C) (crit: 01M5JNJC6SG6Z827GYCE4XNQJ6) (crit: 01M5JNJC6SZ9SKKYRQJZVJ7GTR) (crit: 01M5JNJC6STWJ3EA28NK9ZDT4C)
 - [x] Test: 3.2 — integracyjny: nagłówek, liczba wierszy, półki `;`, BOM, nagłówki HTTP, puste pola rok/ocena; parsowanie modułem `csv`
-- [ ] Task 3.3: `GET /api/stats` + `StatsService` — liczby `to_read`, `reading`, `read` i `average_rating` (tylko `read` z oceną, zaokrąglone do 0,1, `null` bez ocen); statystyki w nagłówku layoutu, odświeżane out-of-band po każdej operacji HTMX (dodanie, status, ocena, usunięcie) (requires: 2.4, 2.6, 2.7) (spec: lista-lektur.md) (tech: python, fastapi, htmx)
+- [x] Task 3.3: `GET /api/stats` + `StatsService` — liczby `to_read`, `reading`, `read` i `average_rating` (tylko `read` z oceną, zaokrąglone do 0,1, `null` bez ocen); statystyki w nagłówku layoutu, odświeżane out-of-band po każdej operacji HTMX (dodanie, status, ocena, usunięcie) (requires: 2.4, 2.6, 2.7) (spec: lista-lektur.md) (tech: python, fastapi, htmx)
   - AC: entry — `GET /api/stats`; nagłówek layoutu ładuje statystyki przy każdym renderze
   - AC: 2×to_read, 1×reading, 2×read z ocenami 4 i 5 → `to_read=2, reading=1, read=2, average_rating=4.5` (lista-lektur.md:82)
   - AC: bez ocenionych przeczytanych `average_rating` = null (A11)
   - AC: po każdej operacji liczniki w nagłówku zgodne z bazą bez przeładowania (A7, lista-lektur.md:127)
   - Specky: (req: 01M5JNJC92ST45R6HKAP0C74SZ v1 @1832259)
   - Specky criteria: (crit: 01M5JNJC9EBJB0ZHNAM076HF2Q) (crit: 01M5JNJC9E527FQCDGD1MXYGDR) (crit: 01M5JNJC9ERY4G58GS31GB52B3)
-- [ ] Test: 3.3 — jednostkowy zaokrąglenia i null; integracyjny endpoint; odpowiedzi HTMX zawierają fragment OOB nagłówka
+- [x] Test: 3.3 — jednostkowy zaokrąglenia i null; integracyjny endpoint; odpowiedzi HTMX zawierają fragment OOB nagłówka
 - [ ] Task 3.4: E2E test — Playwright: filtry łączone (status + półka + q, porównanie z API), eksport CSV (pobranie pliku, nagłówek, zawartość), statystyki w nagłówku po dodaniu, zmianie statusu, ocenie i usunięciu książki; dodanie do jobu `e2e` w CI (requires: 3.1, 3.2, 3.3) (spec: lista-lektur.md) (tech: playwright, python)
   - AC: wynik filtrów w UI = zbiór z `GET /api/books` (A3)
   - AC: pobrany CSV parsuje się i zawiera wszystkie książki (A6)

@@ -1,3 +1,4 @@
 {% include "partials/detail_field.html" %}
 {% if field == "status" %}{% with field = "rating", oob = True, saved = None %}{% include "partials/detail_field.html" %}{% endwith %}{% endif %}
+{% if field in ("status", "rating") and not errors %}{% with oob = True %}{% include "partials/stats.html" %}{% endwith %}{% endif %}
 {% if field == "title" and not errors %}{% with oob = True %}{% include "partials/detail_heading.html" %}{% endwith %}{% endif %}

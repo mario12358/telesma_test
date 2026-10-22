@@ -79,6 +79,8 @@ Widoki HTML formularzy (bez JS) używają POST + 303 (PRG) na ścieżkach poza `
 | 2026-10-22 | Filtr statusu jako radio stylizowane na przyciski (stan zostaje w formularzu przy szukaniu) | Przyciski submit gubiłyby status przy zapytaniu z pola `q` |
 | 2026-10-22 | e2e: etykiety pól wybierane z `exact=True` («Autor» ⊂ «Szukaj w tytule lub autorze») | Tryb ścisły Playwright |
 | 2026-10-22 | CSV: komórki zaczynające się od `= + - @` poprzedzone apostrofem (CSV injection); kolejność wierszy jak na liście | OWASP; otwierane w arkuszu (A6) |
+| 2026-10-22 | 📌 Statystyki w nagłówku z procesora kontekstu `stats_context` (każdy render); fragmenty po zmianie statusu/oceny/dodaniu dołączają OOB `#stats` | A7, A16 |
+| 2026-10-22 | Średnia ocena zaokrąglana half-up (`Decimal`), w UI z przecinkiem | Spec «zaokrąglona do 0,1»; `round()` w Pythonie to banker's rounding |
 | 2026-10-22 | Akcje GitHub przypięte do SHA (checkout v4.2.2, setup-python v5.6.0, upload-artifact v4.6.2) | Wytyczne github-actions.md |
 
 ## Known problems and solutions
@@ -110,7 +112,7 @@ zależności `get_session` (1.2). Statystyki w nagłówku layoutu liczy serwis s
 <!-- rotates here. Appending more "turn of 08-19 closed" paragraphs turns this               -->
 <!-- section into a second, unbounded report in the prompt of every session.                 -->
 
-- Last completed task: 3.2 Eksport CSV
-- Next task: 3.3 Statystyki
+- Last completed task: 3.3 Statystyki
+- Next task: 3.4 E2E fazy 3
 - Tag `telesma/phase-1` założony po poprawce audytu zależności (PR #6)
 - Blockers: brak
