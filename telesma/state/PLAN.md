@@ -26,13 +26,13 @@
   - Specky: (req: 01M5JNJCTA42TVEMS952S2K1H9 v1 @cf83d75)
   - Specky criteria: (crit: 01M5JNJBEG18125FHAA7RP42K4) (crit: 01M5JNJCTX1C3MCC3C32KJQP5W)
 - [x] Test: 1.1 — aplikacja startuje, `GET /` zwraca 200 (placeholder), `ruff check .` przechodzi; handler 422 zwraca ustalony format
-- [ ] Task 1.2: Warstwa bazy — engine SQLAlchemy z `LEKTURY_DB_PATH` (domyślnie `data/lektury.db`, katalog tworzony), `PRAGMA foreign_keys=ON` na każdym połączeniu, sesja per request (Depends), konfiguracja Alembic i `alembic upgrade head` w lifespan aplikacji (requires: 1.1) (spec: TECHNICAL_GUIDELINES.md) (tech: python, fastapi, sqlite, sql)
+- [x] Task 1.2: Warstwa bazy — engine SQLAlchemy z `LEKTURY_DB_PATH` (domyślnie `data/lektury.db`, katalog tworzony), `PRAGMA foreign_keys=ON` na każdym połączeniu, sesja per request (Depends), konfiguracja Alembic i `alembic upgrade head` w lifespan aplikacji (requires: 1.1) (spec: TECHNICAL_GUIDELINES.md) (tech: python, fastapi, sqlite, sql)
   - AC: start na nieistniejącej ścieżce tworzy plik bazy i tabelę `alembic_version` (TG:8-9)
   - AC: `LEKTURY_DB_PATH` przenosi bazę do wskazanego pliku (TG:18)
   - AC: fixture testowy z tymczasowym plikiem SQLite per test, migracje uruchomione (A3, A19)
   - Specky: (req: 01M5JNJBDG93QNHV5379HRXF17 v1 @fc4136e)
   - Specky criteria: (crit: 01M5JNJBEFT8T7ZS911ETD6407) (crit: 01M5JNJBEG77T6N9EA0B04YZCX)
-- [ ] Test: 1.2 — start tworzy bazę; FK włączone (`PRAGMA foreign_keys` = 1); fixture izoluje testy
+- [x] Test: 1.2 — start tworzy bazę; FK włączone (`PRAGMA foreign_keys` = 1); fixture izoluje testy
 - [ ] Task 1.3: Migracja początkowa + modele ORM — `books` (w tym title_norm, author_norm z unikalnym indeksem pary), `shelves` (name_norm unikalny), `book_shelves` (PK złożony, FK ON DELETE CASCADE), `notes` (book_id FK CASCADE, content, created_at) (requires: 1.2) (spec: lista-lektur.md) (tech: python, sql, sqlite)
   - AC: `books`: id, title, author, year, status, rating, title_norm, author_norm, created_at, updated_at (lista-lektur.md:24-32)
   - AC: duplikat pary (title_norm, author_norm) odrzucany przez bazę (R1, lista-lektur.md:36)

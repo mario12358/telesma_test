@@ -8,7 +8,9 @@ This file keeps the project context that survives `/compact`.
 - Framework: FastAPI (API JSON pod `/api` + widoki HTML), Jinja2, HTMX 2.0.4 (`app/static/htmx.min.js`)
 - Database: SQLite (`LEKTURY_DB_PATH`, domyślnie `data/lektury.db`), SQLAlchemy 2.x (sync), Alembic
 - Tests: pytest + FastAPI `TestClient`; e2e Playwright (Python, marker `e2e`); ruff (lint + format)
-- CI: `.github/workflows/specky-ci.yml`, job `test` (pytest z JUnit, e2e Chromium, ruff)
+- CI: `.github/workflows/specky-ci.yml`, job `test` (pytest z JUnit, e2e na preinstalowanym Chrome przez `--browser-channel chrome`, ruff)
+- SQLite: każde połączenie dostaje `journal_mode=WAL`, `synchronous=NORMAL`, `foreign_keys=ON`, `busy_timeout=5000` (`app/db.py`); migracje `alembic upgrade head` w `lifespan`
+- Testy: fixture `app`/`client`/`session` w `tests/conftest.py` — świeży plik SQLite per test w `tmp_path`
 
 ## Architecture
 
@@ -70,6 +72,9 @@ Widoki HTML formularzy (bez JS) używają POST + 303 (PRG) na ścieżkach poza `
 | Problem | Solution |
 |---------|----------|
 | Systemowy Python 3.13 bez certyfikatów SSL, brak 3.12 | `uv venv --python 3.12 .venv`; instalacja przez `uv pip install` |
+| `playwright install --with-deps chromium` w CI trwa ~10 min | e2e na preinstalowanym Chrome runnera: `--browser-channel chrome` |
+| Ruff uznaje `alembic` za moduł projektu (katalog `alembic/`) | `known-third-party = ["alembic"]` w `pyproject.toml` |
+| Mutacja kodu produkcyjnego (np. wyłączenie reguły) blokowana przez klasyfikator auto mode | Czułość testu reguły uzasadniać wartością domyślną/danymi testu; zapis w Problem log |
 
 ## Component dependencies
 
@@ -83,6 +88,6 @@ zależności `get_session` (1.2). Statystyki w nagłówku layoutu liczy serwis s
 <!-- rotates here. Appending more "turn of 08-19 closed" paragraphs turns this               -->
 <!-- section into a second, unbounded report in the prompt of every session.                 -->
 
-- Last completed task: 1.1 Architecture skeleton and conventions
-- Next task: 1.2 Warstwa bazy
+- Last completed task: 1.2 Warstwa bazy
+- Next task: 1.3 Migracja początkowa + modele ORM
 - Blockers: brak

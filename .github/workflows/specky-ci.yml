@@ -51,17 +51,16 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements-dev.txt
 
-      - name: Install the Chromium browser for e2e tests
-        run: python -m playwright install --with-deps chromium
-
       - name: Run unit and integration tests
         run: |
           mkdir -p reports
           pytest -m "not e2e" --junitxml=reports/junit.xml
         continue-on-error: true
 
+      # The runner image ships Google Chrome (Chromium-based); using it skips a ~10 min
+      # `playwright install --with-deps chromium`.
       - name: Run e2e tests on Chromium
-        run: pytest -m e2e --browser chromium --junitxml=reports/junit-e2e.xml
+        run: pytest -m e2e --browser chromium --browser-channel chrome --junitxml=reports/junit-e2e.xml
         continue-on-error: true
 
       # --- Contract 1: JUnit report as an artifact with "junit" in its name -------
