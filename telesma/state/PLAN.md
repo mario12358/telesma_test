@@ -44,7 +44,7 @@
   - Specky: (req: 01M5JNJBS0EPEP3TSA6H4QD6N6 v1 @ebeb2dd)
   - Specky: (req: 01M5JNJBY1D70DBG1EJP24G9YQ v1 @e14a41b)
 - [x] Test: 1.3 — migracja na pustej bazie tworzy 4 tabele; constraints unikalności i kaskady działają
-- [ ] Task 1.4: Schematy Pydantic + `BookService` — normalizacja (R1), create, get, list (filtry status/shelf/q, sort `updated_at` desc), update częściowy (R2 wg S1: ocena 1–5 tylko przy `reading`/`read`, zmiana na `to_read` kasuje ocenę), delete (R3); komunikaty PL (requires: 1.3) (spec: lista-lektur.md) (tech: python, fastapi)
+- [x] Task 1.4: Schematy Pydantic + `BookService` — normalizacja (R1), create, get, list (filtry status/shelf/q, sort `updated_at` desc), update częściowy (R2 wg S1: ocena 1–5 tylko przy `reading`/`read`, zmiana na `to_read` kasuje ocenę), delete (R3); komunikaty PL (requires: 1.3) (spec: lista-lektur.md) (tech: python, fastapi)
   - AC: entry — wywołania z routera `/api/books` (1.5) i z widoków HTML (2.4, 2.6)
   - AC: tytuł 1–200 po przycięciu, autor 1–120, rok opcjonalny 1450 ≤ rok ≤ bieżący+1, status domyślnie `to_read` (lista-lektur.md:27-30)
   - AC: duplikat (tytuł, autor) po normalizacji → 422 przy polu `title` z czytelnym komunikatem (R1)
@@ -55,7 +55,7 @@
   - Specky: (req: 01M5JNJD1TJ1MABNK0535BD9Z8 v1 @1d012e2)
   - Specky: (req: 01M5JNJD466AEHW02P8DB44SDT v1 @b10e73e)
   - Specky criteria: (crit: 01M5JNJBNHHKH0CPABRA46YMVD) (crit: 01M5JNJBNJ5FWS6X307GYV86AQ) (crit: 01M5JNJBNJ3G2PT3YYPX92YS5X) (crit: 01M5JNJD03R9G6CQ77028G996V) (crit: 01M5JNJD032FE1JGM0AFGAN4V2) (crit: 01M5JNJD26WJ3MMGENKV9M116X) (crit: 01M5JNJD26AKTJC1MJED59BPX6) (crit: 01M5JNJD265HM74ETSWG8NSMHA) (crit: 01M5JNJD26RDSKJT1RQ58DD2PR)
-- [ ] Test: 1.4 — jednostkowe: normalizacja, R1, R2 (wariant S1), R3, walidacja pól, filtry i sortowanie
+- [x] Test: 1.4 — jednostkowe: normalizacja, R1, R2 (wariant S1), R3, walidacja pól, filtry i sortowanie
 - [ ] Task 1.5: Router `/api/books` — `GET` (lista, filtry `status`, `shelf`, `q`), `POST` (201), `GET /{id}` (z `shelves` i `notes`), `PATCH /{id}`, `DELETE /{id}` (204); globalne handlery 422/404 w formacie z 1.1 (requires: 1.4) (spec: lista-lektur.md) (tech: python, fastapi, rest-api)
   - AC: entry — `GET /api/books` i pozostałe ścieżki z tabeli w lista-lektur.md:68-74
   - AC: nieistniejące id → 404; błędne pola → 422 z listą pól (lista-lektur.md:65-66)

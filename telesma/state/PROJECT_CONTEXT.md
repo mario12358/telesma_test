@@ -60,6 +60,8 @@ Widoki HTML formularzy (bez JS) używają POST + 303 (PRG) na ścieżkach poza `
 | 2026-10-22 | 📌 Tabele `STRICT`; teksty `Text`, daty jako tekst ISO `%Y-%m-%dT%H:%M:%S.%fZ` (typ `UtcDateTime`) | Wytyczne sqlite.md; STRICT nie przyjmuje VARCHAR/DATETIME; stała szerokość = sortowanie tekstowe = chronologiczne |
 | 2026-10-22 | 📌 `normalize_text` (casefold, przycięcie, pojedyncze spacje) dla R1, unikalności półek i szukania `q` | SQLite `LIKE` jest case-insensitive tylko dla ASCII; szukanie po kolumnach `*_norm` |
 | 2026-10-22 | CHECK w bazie: status, zakres oceny, ocena tylko przy `reading`/`read` | Druga linia obrony reguł z serwisu (S1) |
+| 2026-10-22 | 📌 `update_book(session, id, changes)` dostaje TYLKO pola obecne w żądaniu (`model_dump(exclude_unset=True)`); `null` czyści rok/ocenę, dla tytułu/autora/statusu daje 422 | Semantyka PATCH (A8); widoki HTML przekazują ten sam słownik |
+| 2026-10-22 | Duplikat książki → 422 przy `title` z `DUPLICATE_MESSAGE`; walidacja zbiera wszystkie błędy naraz | A5, A18 — komunikaty przy wszystkich polach formularza |
 | 2026-10-22 | Akcje GitHub przypięte do SHA (checkout v4.2.2, setup-python v5.6.0, upload-artifact v4.6.2) | Wytyczne github-actions.md |
 
 ## Known problems and solutions
@@ -91,6 +93,6 @@ zależności `get_session` (1.2). Statystyki w nagłówku layoutu liczy serwis s
 <!-- rotates here. Appending more "turn of 08-19 closed" paragraphs turns this               -->
 <!-- section into a second, unbounded report in the prompt of every session.                 -->
 
-- Last completed task: 1.3 Migracja początkowa + modele ORM
-- Next task: 1.4 Schematy Pydantic + BookService
+- Last completed task: 1.4 Schematy Pydantic + BookService
+- Next task: 1.5 Router `/api/books`
 - Blockers: brak
