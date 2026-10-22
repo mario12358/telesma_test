@@ -14,6 +14,8 @@ UtcTimestamp = Annotated[datetime, PlainSerializer(_serialize_utc, return_type=s
 
 
 class BookCreate(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
     title: str
     author: str
     year: int | None = None
@@ -23,6 +25,8 @@ class BookCreate(BaseModel):
 
 class BookUpdate(BaseModel):
     """Partial update: only fields present in the request body are applied."""
+
+    model_config = ConfigDict(extra="forbid")
 
     title: str | None = None
     author: str | None = None

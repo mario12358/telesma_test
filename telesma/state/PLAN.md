@@ -56,7 +56,7 @@
   - Specky: (req: 01M5JNJD466AEHW02P8DB44SDT v1 @b10e73e)
   - Specky criteria: (crit: 01M5JNJBNHHKH0CPABRA46YMVD) (crit: 01M5JNJBNJ5FWS6X307GYV86AQ) (crit: 01M5JNJBNJ3G2PT3YYPX92YS5X) (crit: 01M5JNJD03R9G6CQ77028G996V) (crit: 01M5JNJD032FE1JGM0AFGAN4V2) (crit: 01M5JNJD26WJ3MMGENKV9M116X) (crit: 01M5JNJD26AKTJC1MJED59BPX6) (crit: 01M5JNJD265HM74ETSWG8NSMHA) (crit: 01M5JNJD26RDSKJT1RQ58DD2PR)
 - [x] Test: 1.4 — jednostkowe: normalizacja, R1, R2 (wariant S1), R3, walidacja pól, filtry i sortowanie
-- [ ] Task 1.5: Router `/api/books` — `GET` (lista, filtry `status`, `shelf`, `q`), `POST` (201), `GET /{id}` (z `shelves` i `notes`), `PATCH /{id}`, `DELETE /{id}` (204); globalne handlery 422/404 w formacie z 1.1 (requires: 1.4) (spec: lista-lektur.md) (tech: python, fastapi, rest-api)
+- [x] Task 1.5: Router `/api/books` — `GET` (lista, filtry `status`, `shelf`, `q`), `POST` (201), `GET /{id}` (z `shelves` i `notes`), `PATCH /{id}`, `DELETE /{id}` (204); globalne handlery 422/404 w formacie z 1.1 (requires: 1.4) (spec: lista-lektur.md) (tech: python, fastapi, rest-api)
   - AC: entry — `GET /api/books` i pozostałe ścieżki z tabeli w lista-lektur.md:68-74
   - AC: nieistniejące id → 404; błędne pola → 422 z listą pól (lista-lektur.md:65-66)
   - AC: `?status=czytam` odrzucone (422), akceptowane tylko `to_read|reading|read` (Q1)
@@ -64,7 +64,7 @@
   - Specky: (req: 01M5JNJC27DX8MDJN872Q85V9J v1 @b508d0c)
   - Specky: (req: 01M5JNJCXSEXSVD5D2NSP50PR6 v1 @8d7b3a8)
   - Specky criteria: (crit: 01M5JNJC2VFM8BZCR01MZ1JCT3) (crit: 01M5JNJC2VP96Y3TNJNYETA8NT) (crit: 01M5JNJC2VZ603VSQV5K1WD17A) (crit: 01M5JNJC2VY0KCBQBY5YFCQ8DZ) (crit: 01M5JNJCY4PC9KCVD68Y592R5S)
-- [ ] Test: 1.5 — integracyjne przez TestClient: każdy endpoint, kombinacje filtrów (shelf przez bezpośredni wpis w `book_shelves`), kody 201/204/404/422
+- [x] Test: 1.5 — integracyjne przez TestClient: każdy endpoint, kombinacje filtrów (shelf przez bezpośredni wpis w `book_shelves`), kody 201/204/404/422
 
 ### Phase 2: Półki, notatki, interfejs obu ekranów
 

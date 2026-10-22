@@ -13,9 +13,9 @@
 
 ## Summary
 
-- **Start**: [start date]
-- **Status**: In progress | Completed | Blocked
-- **Progress**: 0/0 tasks completed
+- **Start**: 2026-10-22
+- **Status**: In progress
+- **Progress**: 5/18 tasks completed (Phase 1 ✅)
 
 ## Test status
 
@@ -32,19 +32,26 @@ is treated as a continuation of the run above it. A block without a date stays i
 forever and grows in the prompt of every session.
 -->
 
+**Regression after Phase 1 (2026-10-22) — GREEN:** `pytest -q` 85/0, `ruff check .` clean.
+First full-suite run of the project; CI job `test` green on every PR (#1–#4).
+
 | Metric | Value |
 |--------|-------|
-| Total tests | 0 |
-| Pass | 0 |
+| Total tests | 85 |
+| Pass | 85 |
 | Fail | 0 |
 | Skip | 0 |
-| Last run | - |
+| Last run | 2026-10-22 |
 
 ## Task history
 
 | Task | Status | Tests | Tries | Commit | Time |
 |------|--------|-------|-------|--------|------|
-| | | | | | |
+| 1.1 Szkielet i konwencje | ✅ | 9/9 | 1 | bb7dab0 (PR #1) | 2026-10-22 |
+| 1.2 Warstwa bazy | ✅ | 15/15 | 1 | 76d8eb5 (PR #2) | 2026-10-22 |
+| 1.3 Schemat i modele ORM | ✅ | 28/28 | 1 | PR #3 | 2026-10-22 |
+| 1.4 Schematy + BookService | ✅ | 67/67 | 1 | a12febf (PR #4) | 2026-10-22 |
+| 1.5 Router `/api/books` | ✅ | 85/85 | 1 | PR #5 | 2026-10-22 |
 
 ## Change history
 
@@ -90,3 +97,8 @@ below the table with the prefix `> ⚠ Info:` so the user can see what happened 
 
 <!-- Format: [date] Task X.X: problem description - fix/status -->
 <!-- We do NOT keep a list of changed files — git knows it better: git log --stat -->
+
+- [2026-10-22] Task 1.1: kontrola hygiene ostrzega o `app/static/htmx.min.js` (minified bundle, fingerprint `579606aa6fb6`) — świadomie: TECHNICAL_GUIDELINES.md:30 wymaga HTMX jako jednego pliku statycznego bez npm; nie dodano wyjątku.
+- [2026-10-22] Task 1.1: krok `playwright install --with-deps chromium` w CI trwał ~10 min — zastąpiony preinstalowanym Chrome runnera (`--browser-channel chrome`), CI ~20 s.
+- [2026-10-22] Task 1.2: mutacja reguły (`foreign_keys=OFF`) zablokowana przez klasyfikator auto mode — test sprawdza wartość 1, a domyślna w SQLite to 0, więc nie przejdzie bez pragmy; mutacji nie wykonano.
+- [2026-10-22] Task 1.4: rebase gałęzi po squash-merge poprzedniego PR zmienił SHA i status `Telesma: checks (local)` zgłosił brak dowodu — `git commit --amend --no-edit` + `--force-with-lease`; kolejne gałęzie zakładane od `origin/main` po scaleniu poprzedniego PR.
