@@ -16,6 +16,7 @@ PYDANTIC_MESSAGES = {
     "json_invalid": "Nieprawidłowy JSON.",
     "model_attributes_type": "Nieprawidłowe dane.",
     "dict_type": "Nieprawidłowe dane.",
+    "extra_forbidden": "Nieznane pole.",
 }
 DEFAULT_MESSAGE = "Nieprawidłowa wartość."
 

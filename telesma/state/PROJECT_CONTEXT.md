@@ -62,6 +62,7 @@ Widoki HTML formularzy (bez JS) używają POST + 303 (PRG) na ścieżkach poza `
 | 2026-10-22 | CHECK w bazie: status, zakres oceny, ocena tylko przy `reading`/`read` | Druga linia obrony reguł z serwisu (S1) |
 | 2026-10-22 | 📌 `update_book(session, id, changes)` dostaje TYLKO pola obecne w żądaniu (`model_dump(exclude_unset=True)`); `null` czyści rok/ocenę, dla tytułu/autora/statusu daje 422 | Semantyka PATCH (A8); widoki HTML przekazują ten sam słownik |
 | 2026-10-22 | Duplikat książki → 422 przy `title` z `DUPLICATE_MESSAGE`; walidacja zbiera wszystkie błędy naraz | A5, A18 — komunikaty przy wszystkich polach formularza |
+| 2026-10-22 | `GET /api/books` zwraca tablicę (bez koperty `items`), `POST` → 201 + `Location`, ciała zapisu z `extra="forbid"` | Kontrakt ze spec (sekcja 4); wytyczne rest-api.md tam, gdzie nie kolidują |
 | 2026-10-22 | Akcje GitHub przypięte do SHA (checkout v4.2.2, setup-python v5.6.0, upload-artifact v4.6.2) | Wytyczne github-actions.md |
 
 ## Known problems and solutions
@@ -93,6 +94,6 @@ zależności `get_session` (1.2). Statystyki w nagłówku layoutu liczy serwis s
 <!-- rotates here. Appending more "turn of 08-19 closed" paragraphs turns this               -->
 <!-- section into a second, unbounded report in the prompt of every session.                 -->
 
-- Last completed task: 1.4 Schematy Pydantic + BookService
-- Next task: 1.5 Router `/api/books`
+- Last completed task: 1.5 Router `/api/books` (Phase 1 ✅)
+- Next task: 2.1 ShelfService + router
 - Blockers: brak
