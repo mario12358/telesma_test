@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+data/*.db
+*.sqlite
+.pytest_cache/
+reports/
+telesma/artifacts/
+telesma/state/PERMISSIONS.jsonl
+telesma/state/CHECKS.jsonl
+.DS_Store
